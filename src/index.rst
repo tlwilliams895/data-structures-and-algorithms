@@ -6,6 +6,12 @@ Chapters
    :maxdepth: 1
    :name: chapterstoc
 
+   chapters/algorithm-analysis/index
+   chapters/binary-trees/index
+   chapters/sorting-algorithms/index
+   chapters/data-structures/index
+   chapters/optimizing-solutions/index
+
 .. toctree::
 
    genindex
@@ -17,14 +23,8 @@ Studios
    :maxdepth: 1
    :name: studiostoc
 
-Assignments
-===========
-
-.. toctree::
-   :maxdepth: 1
-   :name: assignmentstoc
-
 .. toctree::
    :hidden:
 
    index-full
+   todos
