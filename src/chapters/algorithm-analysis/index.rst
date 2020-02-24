@@ -5,6 +5,8 @@ Algorithm Analysis
    :maxdepth: 3
 
    intro
-   big-o-notation
+   big-o-definition
+   analyzing-with-big-o-notation
    insertion-sort
+   exercises
    studio
