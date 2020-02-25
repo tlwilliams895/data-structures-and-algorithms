@@ -11,6 +11,8 @@ Why
 
 Example that shows why we need to understand how efficient an algorithm is, and how we can describe in plain english that one algorithm is more efficient than another algorithm.
 
+.. TODO: should HOW and Types of Time Complexity be moved to analyzing with big-o notation?
+
 How
 ---
 
@@ -38,6 +40,8 @@ Bring back the first section definition highlighting worst case.
 - What do we mean by worst case? 
 - What is best case? 
 - Why don't we use Big O notation for best case?
+
+.. TODO: Should Big O Operations be discussed here? or analyzing with big o notation?
 
 Big O Operations
 ----------------
