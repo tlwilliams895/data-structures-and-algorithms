@@ -22,6 +22,14 @@ Diagrams (or table) of most common Big O run times (O(log n), O(n), O(n + log n)
 
 Bring the diagrams (or table) together with the definitions above.
 
+Types of Time Complexity
+------------------------
+
+- Constant
+- Polynomial linear
+- Polynomial quadratic
+- log
+
 Worst Case?
 -----------
 
