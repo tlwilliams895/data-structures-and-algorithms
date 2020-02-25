@@ -48,6 +48,11 @@ What do we mean by operations?
 - Product
 - multiplication by product
 
+Another Example?
+----------------
+
+.. TODO: move following section to insertion-sort doc
+
 Case Study: Insertion Sort
 --------------------------
 
