@@ -39,7 +39,32 @@ Bring back the first section definition highlighting worst case.
 - What is best case? 
 - Why don't we use Big O notation for best case?
 
-Another Example?
+Big O Operations
 ----------------
 
-A final example that pulls together everything they know -- maybe ask the reader to think about which Big O notation it would be and then present the answer.
+What do we mean by operations?
+
+- Sum
+- Product
+- multiplication by product
+
+Case Study: Insertion Sort
+--------------------------
+
+What is the insertion sort algorithm. What are the two implementations of this algorithm?
+
+Link back to the recursion lesson in LC101.
+
+Recursive
+^^^^^^^^^
+
+How do we calculate this algorithm's run time complexity?
+
+How do we now put that run time complexity into Big O notation?
+
+Non-Recursive
+^^^^^^^^^^^^^
+
+How do we calculate this algorithm's run time complexity?
+
+How do we now put that run time complexity into Big O notation?
