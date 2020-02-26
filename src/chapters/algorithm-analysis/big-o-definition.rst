@@ -18,7 +18,7 @@ What
 
 .. plain english
 
-An approach to finding the upper bound of how long a function, made up of a series of steps, will take to complete. 
+
 
 .. technical
 
@@ -77,43 +77,7 @@ Diagrams (or table) of most common Big O run times (O(log n), O(n), O(n + log n)
 
 Bring the diagrams (or table) together with the definitions above.
 
-Types of Time Complexity
-------------------------
 
-.. 
-  relative to:
-    a single step
-    the overall algorithm
-  how steps become additive
-    dominance of highest order
-      why?
-      rejecting constants and lower orders
-        theoretical vs practical rejection
-
-- Constant -- same number of steps every time
-- Polynomial linear -- single pass over the entire data
-- Polynomial quadratic -- 
-- log -- s
-
-Worst Case?
------------
-
-Bring back the first section definition highlighting worst case or upper bounds.
-
-- What do we mean by worst case? 
-- What is best case? 
-- Why don't we use Big O notation for best case?
-
-.. TODO: Should Big O Operations be discussed here? or analyzing with big o notation?
-
-Big O Operations
-----------------
-
-What do we mean by operations?
-
-- Sum
-- Product
-- multiplication by product
 
 Another Example?
 ----------------
