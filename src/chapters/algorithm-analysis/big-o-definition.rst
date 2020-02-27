@@ -78,39 +78,25 @@ Diagrams (or table) of most common Big O run times (O(log n), O(n), O(n + log n)
 Bring the diagrams (or table) together with the definitions above.
 
 
+.. todo:: moved from intro, consider how these can be flowed into
 
-Another Example?
-----------------
+The list below describes the most common notations along with simple scenarios to help illustrate their meaning. Throughout this chapter we will expand on these examples by introducing pseudo-code and, eventually, full-syntax implementations.
 
-.. TODO: move following section to insertion-sort doc
+``O(1)``: Constant Time
+^^^^^^^^^^^^^^^^^^^^^^^
 
-.. 
-  case studies:
-    in main doc: pseudocode
-    link to: directory of implementations in various languages
-      c# for this first draft
+A Big-O of ``1`` means the time complexity of the algorithm is **independent of the size of the input**. No matter how large the input size is the algorithm will always run in a fixed, or constant, amount of time. Constant time is often in reference to a single operation within an algorithm.
 
-Case Study: Insertion Sort
---------------------------
+.. admonition:: Examples
 
-What is the insertion sort algorithm. What are the two implementations of this algorithm?
+  Single Operations:
 
-Link back to the recursion lesson in LC101.
+  - indexing into an element in an Array
+  - finding the smallest value in an Array of numbers sorted in ascending order (first element)
 
-Recursive
-^^^^^^^^^
+  Algorithms:
 
-What does the solution look like in C#? (psuedo-code)
+  - password hash comparison algorithms designed to prevent timing attacks by running in constant time
 
-How do we calculate this algorithm's run time complexity?
-
-How do we now put that run time complexity into Big O notation?
-
-Non-Recursive
-^^^^^^^^^^^^^
-
-What does the solution look like in C#? (psuedo-code)
-
-How do we calculate this algorithm's run time complexity?
-
-How do we now put that run time complexity into Big O notation?
+``O(n)``: Linear Time
+^^^^^^^^^^^^^^^^^^^^^
