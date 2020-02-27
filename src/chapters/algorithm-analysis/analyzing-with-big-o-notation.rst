@@ -6,15 +6,35 @@ Intro
 
 Analyzing algorithms with Big-O Notation comes down to basic arithmetic. An algorithm is just a series of steps, or operations, performed by a computer. Every step itself can be classified by Big-O notation.
 
-.. sourcecode:: code
+.. sourcecode::
 
    print "Hello World!"
 
 The above pseudocode has one operation. The computer must print the string "Hello World!" to the console. The Big-O notation of this one step would be ``O(1)``.
 
-Figuring out the Big-O notation for a series of steps simply takes some basic arithmetic.
+What about loops? We don't necessarily know how many items may be in a collection of objects.
 
-.. sourcecode:: code
+.. sourcecode::
+
+   for student in students
+
+A pretty common for loop, that just loops through all the individual students. The computer must do something for every item in the collection. The Big-O notation of this one step would be ``O(n)``.
+
+``n`` represents the number of individual items in the collection ``students``.
+
+Every single line of code can have Big-O notation to represent it's runtime complexity. In the next section we will see how we can combine various Big-O Notation of discrete steps to find the overall Big-O Notation for an entire algorithm.
+
+Big-O Arithmetic
+----------------
+
+Figuring out the Big-O notation for a series of steps simply takes some basic arithmetic. Additive arithmetic to be precise. We predominately use addition, and multiplication. We don't have a need for subtraction, or division because we are always adding steps together.
+
+We do reduce our Big-O Notation to  more easily communicate ideas with others, but the topic of cancellation will come later in this section. Right now we are focused on adding individual steps together to calculate the overall Big-O Notation for an algorithm.
+
+Sum
+^^^
+
+.. sourcecode::
 
    print "Hello World!"
    print "Goodnight World!"
@@ -24,7 +44,7 @@ The above pseudocode has two operations. The computer must print the string "Hel
 - ``print "Hello World!"`` is ``O(1)``
 - ``print "Goodnight World!"`` is ``O(1)``
 
-So we could say the Big-O notation for both of these steps together would be ``O(2)``.
+So we could say the Big-O notation for both of these steps together would be ``O(1 + 1)`` or ``O(2)``.
 
 .. admonition:: note
 
@@ -32,7 +52,7 @@ So we could say the Big-O notation for both of these steps together would be ``O
 
 Let's consider when a step of an algorithm may have sub-steps.
 
-.. sourcecode:: code
+.. sourcecode::
 
    if status is true
        print("True")
@@ -44,19 +64,12 @@ Again this collection of code has two discrete steps:
 
 So again we get a grand total of ``O(2)``.
 
-What about loops? We don't necessarily know how many items may be in a collection of objects.
+Multiplication by Constant
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. sourcecode:: code
+Revisiting our for loop from the intro we can learn about Big-O multiplication.
 
-   for student in students
-
-A pretty common for loop, that just loops through all the individual students.
-
-- ``for student in students`` is ``O(n)``
-
-``n`` represents the number of individual items in the collection ``students``.
-
-.. sourcecode:: code
+.. sourcecode::
 
    for student in students
        print student.first_name
@@ -70,7 +83,7 @@ We need to use some basic arithmetic to combine these into ``O(n(1))`` which is 
 
 What if we loop through the same collection twice?
 
-.. sourcecode:: code
+.. sourcecode::
 
    for student in students
        print student.first_name
@@ -79,7 +92,27 @@ What if we loop through the same collection twice?
 
 In this case we know each for loop can be represented by ``O(n(1))`` and we simply need to add them together ``O(n(1) + n(1))`` which is: ``O(2n(1))``.
 
+Product
+^^^^^^^
+
+What happens when we nest a loop? We are no longer multiplying constants, but multiplying collections of unknown size.
+
+.. sourcecode::
+
+  for student in students
+     for grade in student.grades
+
+- ``for student in students`` is ``O(n)``
+- ``for grade in student.grades`` is ``O(n)``
+
+This results in some basics arithmetic like this: ``O(n * n)`` or also known as ``O(n^2)``.
+
 Figuring out the Big-O Notation for an algorithm can be simply done by figuring out the individual steps of an algorithm and then using some basic arithmetic to combine the individual steps!
+
+Big-O Notation Cancellation
+---------------------------
+
+.. TODO:: cancellation section here before the examples of each?
 
 Breaking Down Common Big O Notations
 ------------------------------------
@@ -89,9 +122,9 @@ In the previous chapter we learned about a collection of commonly used Big O Not
 O(1) Analysis
 ^^^^^^^^^^^^^
 
-.. TODO:: just do print message -- and do the Big O of that, and then say what if it was in a function and do the Big O of that
+.. TODO:: introduce the idea of putting them into functions and being a little more in depth.
 
-.. sourcecode:: code
+.. sourcecode::
 
    function printMessage(message) {
      print message
@@ -102,7 +135,7 @@ In the instance of printing some message to the console the action does not depe
 We would consider this function to be constant time represented in Big O Notation by: ``O(1)``.
 
 
-.. sourcecode:: code
+.. sourcecode::
 
    function printPersonalMessage(person, message) {
      print "Welcome " + person + "!"
@@ -118,7 +151,7 @@ You may be thinking the Big O Notation should be: ``O(2)`` because there are two
 O(n) Analysis
 ^^^^^^^^^^^^^
 
-.. sourcecode:: code
+.. sourcecode::
 
    function sumNumbers(arr) {
      sum = 0
@@ -133,7 +166,7 @@ In this function we must loop through each number in our collection and add that
 
 We would consider this function to be represented in Big O Notation by: ``O(n)`` which refers to the size (number of elements in the collection) of the incoming data.
 
-.. sourcecode:: code
+.. sourcecode::
 
    function averageNumbers(arr) {
      sum = 0
