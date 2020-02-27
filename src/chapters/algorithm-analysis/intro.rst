@@ -19,8 +19,8 @@ Big-O Notation is a mechanism for describing the performance of an algorithm, an
 Deriving and comparing the time complexity of algorithms is essential to writing performant systems throughout the countless avenues of applied Computer Science. To that end, there are three main considerations in classifying the time complexity of an algorithm using Big-O Notation:
 
 - the size of the input (colloquially known as ``n``)
-- the time complexity of each step in the algorithm
-- the order in which the steps are executed
+- the time complexity of each step (``operation``) in the algorithm
+- the order in which the steps (``operations``) are executed
 
 Why
 ---
@@ -37,3 +37,36 @@ Big-O is that common language. It allows for any algorithm, no matter how comple
 
 How
 ---
+
+The Big-O Notation for algorithmic time complexity is always classified in terms of ``n`` - the input size. Traditionally the notation is described as a function of ``n`` in the form ``O(complexity(n))``. 
+
+In theoretical terms, time complexity is considered from a **worst-case**, or upper-bound, of the time requirement. Often this theoretical classification is suitable for comparison across proposed solutions. But it is important to recognize that in practice this time requirement will likely be significantly less.
+
+.. todo:: fact check
+
+.. note::
+  The time complexity of an algorithm is a composite of the steps taken within it. We will explore how individual steps, and sub-steps within them, are aggregated into the overall algorithmic time complexity in later sections.
+
+.. todo:: terminology check - "time complexity notations"?
+
+The list below describes the most common time complexity notations along with simple scenarios to help illustrate their meaning. Throughout this chapter we will expand on these examples by introducing pseudo-code and, eventually, full-syntax implementations.
+
+``O(1)``: Constant Time
+^^^^^^^^^^^^^^^^^^^^^^^
+
+A Big-O of ``1`` means the time complexity of the algorithm is **independent of the size of the input**. No matter how large the input size is the algorithm will always run in a fixed, or constant, amount of time. Constant time is often in reference to a single operation within an algorithm.
+
+.. admonition:: Examples
+
+  - indexing into an element in an Array
+  - finding the smallest value in an Array of numbers sorted in ascending order (first element)
+
+
+
+
+
+
+  
+
+
+
