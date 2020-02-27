@@ -119,8 +119,8 @@ Breaking Down Common Big O Notations
 
 In the previous chapter we learned about a collection of commonly used Big O Notation (constant, n, n^2, log n). Let's look at the pseudocode to determine how these equations were derived.
 
-O(1) Analysis
-^^^^^^^^^^^^^
+O(1) Example
+^^^^^^^^^^^^
 
 .. TODO:: introduce the idea of putting them into functions and being a little more in depth.
 
@@ -148,8 +148,8 @@ The correct Big O Notation for this is: ``O(1)``.
 
 You may be thinking the Big O Notation should be: ``O(2)`` because there are two operations being performed, and although you are correct about the number of operations being performed the usefullness of Big O Notation is to compare the performance of one algorithm to another algorithm. We are less concerned with individual operations unless those operations are dependant on a collection of data. So in this example we simply reduce the extra operations to the simplest notation. Which would be: ``O(1)``. After all ``O(1)`` represents constant time, and it doesn't matter how many individual steps there are, those steps will always execute in constant time.
 
-O(n) Analysis
-^^^^^^^^^^^^^
+O(n) Example
+^^^^^^^^^^^^
 
 .. sourcecode::
 
@@ -192,27 +192,9 @@ Again you may argue that the actual equation should be: ``O(2n + 1)`` because we
 
 We effectively took ``O(2n + 1)`` and cancelled the constant operations, and the number of times we looped through n leaving us with ``O(n)``. Again this is our way of saying this algorithm's runtime complexity is dependant on the size of the collection being passed into the function.
 
-O(n^2) Analysis
-^^^^^^^^^^^^^^^
+O(n^2) Example
+^^^^^^^^^^^^^^
 
-
-O(log n) Analysis
-^^^^^^^^^^^^^^^^^
-
-Big O Operations
-----------------
-
-
-
-
-concept checks
-- what are the big o operators?
-- what is cancelling?
-- when is it appropriate to cancel?
-- what is the relationship of the a specific step in an algorithm, vs the overall algorithm big o?
-- why do you look for the highest order term? -- answer it's what has the biggest impact as the data (n) increases
-- what is a primitive operation?
-- analyzing section is the part to do the pseudocode of the constant, n, n^2, log n, etc
 
 Worst Case?
 -----------
@@ -225,11 +207,13 @@ Bring back the first section definition highlighting worst case or upper bounds.
 
 .. TODO: Should Big O Operations be discussed here? or analyzing with big o notation?
 
-Big O Operations
-----------------
+Concept Checks
+--------------
 
-What do we mean by operations?
-
-- Sum
-- Product
-- multiplication by product
+- what are the big o operators?
+- what is cancelling?
+- when is it appropriate to cancel?
+- what is the relationship of the a specific step in an algorithm, vs the overall algorithm big o?
+- why do you look for the highest order term? -- answer it's what has the biggest impact as the data (n) increases
+- what is a primitive operation?
+- analyzing section is the part to do the pseudocode of the constant, n, n^2, log n, etc
