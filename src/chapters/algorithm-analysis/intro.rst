@@ -104,18 +104,4 @@ Concept Checks
   - [ ] it can help understanding the budget required to execute an algorithm
 
   - [ ] it can provide an understanding of an algorithm's practical capability using its theoretical limitation
-
-
-
-
-
-
-
-
-
-
-
   
-
-
-
