@@ -2,8 +2,49 @@
 Exploring Big-O Notation
 ========================
 
+Previously, in the introduction, we defined Big-O Notation as a generalized notation for describing and comparing the upper bound of an algorithm's time complexity relative to its input size. We went on to discuss Big-O Values, ``O(time_complexity(n))``, as the individual notations used to classify an algorithm and the steps it is made up of.
+
+.. index:: big-o
+.. index:: growth rate
+
+A more formal, mathematical, definition of Big-O is a notation for describing the **growth rate** of a time complexity function as its input size approaches a theoretical limit of infinity. It is used to classify an algorithm as a function, ``f(n)``, as having a growth rate which can be `at most` the upper bound of the complexity function, ``g(n)``.
+
+That is to say ``f(n) ≤ O(g(n))`` with respect to growth rate. The use of ``≤`` here is not mathematically correct but is "close enough" to provide a more palatable understanding of the definition.
+
+There is a lot to unpack here. And if your head is spinning don't worry. In this section we will dissect the confusing parts of the definition and introduce the three most primitive Big-O Values. This will prepare you for the more practical section to follow where you will learn the arithmetic used to calculate and apply the Big-O of steps and algorithms.
+
+Time Complexity
+===============
+
+The first term we need to clarify is an algorithm's complexity. As is typical in industry usage of Big-O we will focus on time complexity in particular. However, remember that `complexity can refer to any performance characteristic` such as space (memory) or network requests. This is a key facet of Big-O notation---its flexibility in representing any characteristic of interest relative to an upper bound of input size.
+
+Time complexity **does not refer to how long an algorithm takes in traditional, human, units of time like seconds and minutes**. This is a common misconception that everyone has when first learning about Big-O.
+
+.. admonition:: Tip
+
+  Remember that Big-O, described in the chosen complexity of interest, must be able to describe `any algorithm` in terms that are `relative to the system` they are executed in. 
+
+.. index:: computational unit
+.. index:: clock cycle
+.. index:: operation
+
+Instead of human units of time we use `computational units of time` to describe time complexity. A computational unit is a general term for an individual operation executed in an algorithm. Why all the confusion? Because computers operate on `clock cycles` which can be equated to, but are not directly, human units of time. 
+
+In (very) simple terms a clock cycle is the frequency, `1 "something" per second`, that a CPU can perform an operation. This is why CPUs are defined in terms of frequency like Mega-Hertz (MHz) or, for modern machines, Giga-Hertz (GHz). A Hertz (HZ) is ``cycle/s`` or 1 [clock] cycle per second in this context. 
+
+Overlooking insignificant complexity, let's say that one operation takes one cycle to complete. The speed, clock speed, at which a computer can execute an operation depends on the capability of its CPU. 
+
+A super computer will certainly execute an algorithm faster, in human units of time, than a laptop. But by defining time complexity using computational units of time it allows the Big-O of an algorithm, and its comparison to others, to hold true regardless of the machine it is executed on. This means that converting to the `actual human time` is possible using some constant factor defined by the capability of the executing machine.
+
+When speaking generally about Big-O we will refer to time complexity in units of operations. That is to say an algorithm may be described as having an upper bound of taking `X many operations`. Later, when we learn about data structures, we can be more specific about `the cost of an operation` such as `inserting an element` or `comparing two elements` in a list. 
+
 Growth Rates
 ============
+
+.. todo:: 1-2 sentence formal definition
+
+.. 
+  units of operation rather than units of time (seconds)
 
 .. index:: growth rate
 .. index:: upper bound
@@ -22,6 +63,8 @@ As is typical in industry usage of Big-O we will focus on time complexity in par
 .. index:: curve
 
 By representing algorithms as mathematical functions we are able to visualize their behavior as an x-y graph. Each function will produce a line created from connecting each of points made up of an x value and its corresponding y value when that x value is applied to the function. Some of these lines will be straight while most will be curved. This curve behavior will be 
+
+.. todo:: doesnt have to be so basic.
 
 Consider a set of proposed algorithms for a given problem. When each of those algorithms are represented as a function and plotted on a graph we can easily compare their behaviors, lines or curves, relative to each other. From this graphical view we can determine which is optimal for the task at hand.
 
