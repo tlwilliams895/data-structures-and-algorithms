@@ -1,5 +1,5 @@
 ========================
-Exploring Big-O Notation
+Big-O Notation In Detail
 ========================
 
 Previously, in the introduction, we defined Big-O Notation as a generalized notation for describing and comparing an algorithm's time complexity relative to the theoretical upper bound of its input size. 
@@ -13,7 +13,9 @@ We went on to discuss Big-O Values, of the form ``O(time_complexity(n))``, as th
 .. index:: big-o
 .. index:: growth rate
 
-In more rigorous terms, Big-O is a notation for describing the **growth rate** of a time complexity function as its input size approaches a theoretical upper bound of infinity. It is used to classify an algorithm as a function, ``f(n)``, which will never grow faster than the upper bound of the complexity function, ``g(n)``.
+Speaking more rigorously, Big-O is a notation for describing the **growth rate** of a time complexity function as its input size approaches a theoretical upper bound of infinity. The time complexity function serves as an approximate model for the behavior of the actual algorithm classified by it. 
+
+In mathematical terms it is used to describe an algorithm as a function, ``f(n)``, which will never grow faster than its representative complexity function, ``g(n)``, taken at an input size approaching infinity.
 
 .. 
   IDEA: how to fit in that these big-o values are like surrogates/proxies used to model an algorithm
@@ -22,8 +24,7 @@ In more rigorous terms, Big-O is a notation for describing the **growth rate** o
     include why the true mathematical model of an algorithm isnt used?
       too complicated?
       not possible?  
-    example, too heavy?
-      It is used to classify an algorithm as a function, ``f(n)``, which will never grow faster than its representative complexity function, ``g(n)``, as its input size approaches infinity.
+      
       
 That is to say ``f(n) ≤ O(g(n))`` with respect to their growth rates. The use of ``≤`` here is not mathematically correct but is "close enough" to provide a more relatable understanding of the definition.
 
@@ -67,85 +68,117 @@ Growth Rates
 .. index:: growth rate
 .. index:: upper bound
 
-At its core Big-O Notation is concerned with the **growth rates** of algorithms as a function of their input size. The growth rate of a function is defined as its percentage change as the value of its input is continuously increased. When a function's growth rate is plotted in a graph its x-axis is defined as the size of the variable input. Its y-axis is then defined as the output of the function for each of those values of x.
+At its core Big-O Notation is concerned with the **growth rates** of algorithms as a function of their input size. The growth rate of a function is its incremental change in output as the value of its input is continuously increased. 
 
 .. index:: upper bound
 .. index:: lower bound
 
-In terms of Big-O the x-axis will be a range from 0, the **lower bound**, to some **upper bound** value of the input size---``n``. The y-axis then represents the behavior of the function, the corresponding output at each value of ``n``. The y-axis will be defined as complexity, some performance measure, as a function of ``n``. 
+In terms of Big-O the x-axis represents increasing input sizes, ``n``, from a **lower bound** of 0 through an **upper bound** value of infinity. The y-axis then represents the behavior of a complexity function at each increasing value of ``n``. 
 
-As is typical in industry usage of Big-O we will focus on time complexity in particular. However, remember that the y-axis can be any performance characteristic such as space (memory) or network requests. This is the key to Big-O notation---its flexibility in representing any characteristic of interest relative to an increasing input size.
-
-.. todo:: generic graph with X (input size, n) and Y as a generic "complexity" (function of n). no lines just the labels of the axes
+.. todo:: generic graph with x (input size, n) and y as a generic complexity(n). no lines plotted just these labels of the axes as boundless arrows in the x and y
 
 .. index:: curve
 
-By representing algorithms as mathematical functions we are able to visualize their behavior as an x-y graph. Each function will produce a line created from connecting each of points made up of an x value and its corresponding y value when that x value is applied to the function. Some of these lines will be straight while most will be curved. This curve behavior will be 
+By representing algorithms as mathematical functions we are able to visualize their behavior on a graph. Each Big-O value will have a characteristic behavior that is either a straight or curved line.
 
-.. todo:: doesnt have to be so basic.
+Because of their linear nature the growth rate behavior of straight lines is simple and determined by their slope. A line with no slope is said to have a constant growth rate because it is fixed horizontally. A line with a positive slope will grow at a rate proportional to the size of the input.
 
-Consider a set of proposed algorithms for a given problem. When each of those algorithms are represented as a function and plotted on a graph we can easily compare their behaviors, lines or curves, relative to each other. From this graphical view we can determine which is optimal for the task at hand.
+.. index:: vertical asymptote
+
+Curved lines have a more complex growth behavior. They will grow at a `variable` rate that itself changes with the size of the input. But curved lines eventually reach a `limitation point` where their curvature straightens and becomes practically vertical. This behavior of curved lines is exhibited as it approaches an imaginary boundary known as its **vertical asymptote**.
 
 Asymptotic Analysis
 ^^^^^^^^^^^^^^^^^^^
 
-Previously we discussed how some algorithms can appear performant with small inputs but are then quick to degrade when introduced to larger inputs. If we only looked at a small range of inputs, that is a narrow lower and upper bound, we can only conclude the performance of the algorithm `within that range`. 
+Previously we discussed how some algorithms can appear performant with small inputs but are then quick to degrade when introduced to larger inputs. If we only looked at a small range of inputs, that is a narrow spread between the lower and upper bounds, we can only conclude the performance of the algorithm `within that narrow range`. 
 
-Think of these ranges of x like a zoom on a camera. If we are zoomed in too close we have limited information to draw conclusions. By widening this range, or zooming out, we are be able to "see the big picture" of its behavior. From this broader vantage we can draw more confident conclusions about the overall behavior. 
+Think of these ranges of like a zoom on a camera. If we are zoomed in too close we have limited information to draw conclusions. By widening this range, or zooming out, we are be able to "see the big picture" of its behavior. From this broader vantage we can draw more confident conclusions about the overall behavior. 
 
-So what upper bound do we choose? Ideally we would want to view the widest range. But it isn't feasible to list every possible input size. However, we can take a mathematical shortcut. By setting the upper bound to infinity we can see the full picture of a function's behavior. Our view is infinitely broad as nothing is larger than infinity! 
+So what upper bound do we choose? Ideally we would want to view the widest range. But it isn't feasible to list every possible input size. However, we can take a mathematical shortcut. By approximating the function's behavior at an upper bound of infinity we can see the full picture of a its behavior. Our view is `infinitely broad` as nothing is larger than infinity! 
 
 .. index:: limit
 
-Of course, we can not actually represent infinity numerically. But we can use the concept of a mathematical **limit** to gain a practical understanding of its behavior at that theoretical upper bound. The limit of a function is its behavior as its input value `approaches` infinity rather than `actually being` infinity.  
+Of course, we can not actually represent infinity numerically. But we can use the concept of a mathematical **limit** to gain a practical understanding of its behavior as its input `approaches` infinity rather than `actually being` infinity. This is the point at which a curve begins to straighten and become vertical. 
 
-The process of evaluating a function at its theoretical limit is known as **asymptotic analysis**. In order to understand asymptotic analysis let's consider what we know about lines and curves on an x-y graph. 
+.. index:: asymptotic analysis
 
-A straight line may be vertical, horizontal, or at some angle in between. This angle, or rate of change, is constant for straight lines. We know this rate as the slope of a line, the ``m`` in the classic equation of a line---``y = m*x + b``. Vertical and horizontal lines indeed have a slope but are simply 1 and 0 respectively. The key here is that straight lines `change at a constant rate` dictated by their slope. 
-
-Curves however `do not change at a constant rate`. They can take the shape of a U or a J rather than a straight line.  A function exhibiting a curve exists because it's y value changes `at different rates` depending on the given value of x. However, at a certain point, some value of x, every curve will reach a limit to this rate of change and will begin to behave like a straight line. 
-
-.. todo:: graph with a straight lines (v, h, between), parabola and exponential to visualize the shapes described above.
+In other words, it is a point as the input size approaches infinity where the output of the function itself grows indefinitely towards infinity. The process of evaluating a function at this limit is known as **asymptotic analysis** because the curve continues to grow vertically in parallel to its vertical asymptote. 
 
 .. index:: vertical asymptote
 
-In mathematics a **vertical asymptote** is displayed on a graph as vertical line next to a function's curve. When both the curve and the vertical line appear to nearly overlap each other we can conclude the function has reached its limit. That is, no matter how much we increase the x value it will continue to remain parallel to the vertical line. 
-
-The value of x that causes the function to exhibit this vertical behavior is known as its vertical asymptote. This point is the limit of x for the function because it is the point where no more change can be exhibited.
+In mathematics a **vertical asymptote** is displayed on a graph as vertical line next to a function's curve. When both the curve and the vertical line appear to nearly overlap each other we can conclude the function has reached its limit. That is, no matter how much we increase the x value it will only grow vertically. 
 
 .. todo:: simple graph showing a curve and an asymptote. point at parts of the curve that are responding to x and highlight the x where the limit is reached
+
 
 Big-O As The Upper Bound
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-So how does this relate to Big-O? Recall that the goal of using Big-O notation is to be able to compare the `upper bound` time complexity of candidate algorithms. When we visualize the limit of each algorithm's growth rate we are able to compare their theoretical potentials to each other. This allows us to quickly, visually, rule out all of algorithms whose performance are relatively less favorable. By process of elimination we can arrive at the optimal choice to solve the given problem.
+So how does asymptotic analysis relate to Big-O? Recall that the goal of using Big-O Notation is to be able to compare the `upper bound` time complexity of candidate algorithms. When we visualize the limit of each algorithm's growth rate we are able to compare their theoretical potentials to each other. Those that reach their vertical asymptote sooner are said to be less performant than another. Because that limiting input size causes their time complexity to skyrocket indefinitely. 
 
-However, recall that Big-O Notation is generic by design. This means that once we understand the upper bound behavior of the most common Big-O Values we do not have to plot them against each other every time. Rather than needing to visualize them we only need to spend our time calculating each algorithm's Big-O. After we calculate, classify, and order each candidate and order them from our knowledge of their behaviors we can conclude which is the best choice without requiring much more than basic arithmetic!
+This behavior allows us to quickly, visually, rule each algorithm whose behavior is less favorable relative to another. By process of elimination we can arrive at the optimal choice to solve the given problem.
 
-.. 
-  discuss how time complexity is in terms of "operations" not literal time
-    more generic term that affords leeway due to differences in processing capacity of host machine
-  segue into the three "base values"?? of Big-O
-    constant
-    n
-    log2 n
-    are there others? is this correct?
+However, recall that Big-O Notation is generic by design. This means that once we internalize the upper bound growth rates of the most common Big-O Values we do not have to plot them against each other every time. Once the candidates have been classified using Big-O Notation we can determine the best choice conceptually rather than graphically.
+
+Below is a graph of the common Big-O Values you are likely to encounter. We will cover how each Value relates in a practical sense to an algorithm in the coming section. For now just consider how the complexity function of ``n`` controls the limiting behavior of these Big-O Values.
+
+.. todo:: preview of all the common values on a graph. something like this https://s14-eu5.startpage.com/cgi-bin/serveimage?url=https%3A%2F%2Fwww.cdn.geeksforgeeks.org%2Fwp-content%2Fuploads%2Fmypic.png&sp=b82f0f2b0994a01b2ddadf6679f37c21&anticache=340636
+
+
+The Elementary Big-O Values
+===========================
+
+From the graph above you likely noticed that two linear Big-O Values, ``O(1)`` and ``O(n)``. Before getting into more complex Values let's learn the basics by exploring these elementary notations in the context of individual steps. Later we will learn how to use Big-O arithmetic to combine and reduce the steps of an algorithm to determine its Big-O Value. 
+
+.. admonition:: Tip
+
+  Remember that the Big-O of an algorithm is made up of the Big-O `of the steps within it`. 
+
+.. index:: pseudocode
+
+When defining or classifying using a Big-O Value it is common to write **pseudocode** to represent the programmatic concepts related to it. Pseudocode is a way of writing code at a high level that is a mixture of plain English and generic syntax that is common to most programming languages. It allows us to describe programs and statements, such as the steps of an algorithm, while remaining agnostic to any specific programming language. Pseudocode is a great way of quickly hashing out and discussing a program before implementing it using a real programming language. 
+
+.. index:: O(1)
 
 ``O(1)``: Constant Time
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
-A Big-O of ``1`` means the time complexity of the algorithm is **independent of the size of the input**. No matter how large the input size is the algorithm will always run in a fixed, or constant, amount of time. Constant time is often in reference to a single operation within an algorithm.
+A Big-O of ``1`` means the time complexity is **independent of the size of the input ``n``**. No matter how large the input size is the growth rate will always remain constant. In other words its growth rate is a fixed value represented graphically as a horizontal line. 
 
-.. admonition:: Examples
+- A step classified as of ``O(1)`` means that its operation runs in constant time.
+- By extension an algorithm classified as ``O(1)`` means the execution of its steps will run constant time. 
 
-  Single Operations:
+.. admonition:: Pseudocode
 
-  - indexing into an element in an Array
-  - finding the smallest value in an Array of numbers sorted in ascending order (first element)
+  .. sourcecode:: python
 
-  Algorithms:
+    # a simple print statement
+    print "I am a simple print statement"
 
-  - password hash comparison algorithms designed to prevent timing attacks by running in constant time
+    # indexing into an element of an Array of size n
+    second_element = array[1]
+
+    # finding the smallest value of an Array of n numbers that are sorted in ascending order
+    smallest_element = sorted_array[0]
 
 ``O(n)``: Linear Time
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
+
+A Big-O of ``n`` means the time complexity **is directly proportional to the size of the input** ``n``. As the input size is increased it will grow at a consistent pace. It is represented graphically as a positively sloped line. 
+
+It is associated programmatically with a finite loop, such as a ``for`` loop, that repeats according to the size of ``n``.
+
+- An ``O(n)`` step is a loop that will iterate ``n`` number of times
+- An algorithm classified as ``O(n)`` will take ``n`` many operations to complete its steps
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+
+    # a loop iterating n number of times
+    repeat from 0 to n:
+      # some sub step(s)
+
+    # a loop iterating over each element in an Array of size n
+    for element in array:
+      # some sub step(s)
