@@ -103,6 +103,7 @@ Consider the following pseudocode:
   .. sourcecode:: python
 
     function algorithm(n):
+      print "let's learn how evaluation works!", # level 0, O(1)
       repeat from 0 to n: # level 0, O(n)
         if n equals 1: # level 1, O(1)
           print "it is 1" # level 2, O(1)
@@ -125,7 +126,7 @@ Let's start by counting the operations from each level:
 
 - level 2: there are two ``O(1)`` operations
 - level 1: there are two ``O(1)`` operations, each with an operation at a sub-level
-- level 0: there is one ``O(n)`` operation, with operations at a sub-level
+- level 0: there is one ``O(n)`` operation, with operations at a sub-level, and one ``O(1)`` operation
 
 In order to reduce each level we will need to learn a few basic rules:
 
@@ -137,18 +138,18 @@ Keep in mind that the terms `addition` and `multiplication` are used conceptuall
 
 - level 2: there are two ``(1)`` operations
 - level 1: there are two ``(1)`` operations, each with an operation at a sub-level
-- level 0: there is one ``(n)`` operation, with operations at a sub-level
+- level 0: there is one ``(n)`` operation, with operations at a sub-level, and one ``(1)`` operation
 
 Addition
 --------
 
-When evaluating operations on the same level we add them together. ``O(1)`` operations are special because they run in constant time. So we can treat them as the number ``1`` itself.
+When evaluating operations on the same level we add them together. ``O(1)`` operations are special because they run in constant time. So we can treat them as the constant number ``1`` itself.
 
 Continuing with the pseudocode example from above:
 
 - level 2: ``(1) + (1) = 2``
 - level 1: ``(1) + (1) = 2``
-- level 0: ``(n)``
+- level 0: ``(n) + (1) = n + 1``
 
 Now that we have summed the operations we need a way to reduce the sub-levels into the levels that contain them until we reach the top level---the algorithm itself.
 
@@ -159,16 +160,34 @@ Levels that contain sub-levels can be combined using multiplication. We take the
 
 - level 2 merged with level 1: ``2 * 2 = 4``
 
-We then repeat this reduction until we reach the top level:
+We then repeat this reduction until we reach the top level. Here we have to take note of which level contains a sub-level. The loop should be grouped with its sub-level for the multiplication:
 
-- level 1 merged with level 0: ``4 * (n) = 4*n``
+- level 1 merged with level 0: ``(4 * n) + 1 = 4*n + 1``
 
-At this point we may be tempted classify our algorithm as ``O(4n)``. But we know the algorithm's actual classification is ``O(n)``. Why do we get rid of, or `cancel` the ``4``? 
+At this point we may be tempted classify our algorithm as ``O(4n + 1)``. But we know the algorithm's actual classification is ``O(n)``. Why do we get rid of, or `cancel` the coefficient ``4`` and the constant term ``1``? 
 
 Cancellation
 ------------ 
 
+Recall that Big-O represents the theoretical upper bound of an algorithm's classification. We quality this upper bound as theoretical because it is determined when considering an input size ``n`` of the non-real value infinity. 
 
+When we consider the behavior at this theoretical upper bound we recognize that the following can be discarded: 
+
+- constant terms: any number that doesn't change
+- coefficients: any number that is multiplied with a variable
+- lower order terms: variables at a power less than the highest found in a polynomial 
+
+To avoid getting bogged down in the mathematical details of **asymptotic analysis** let's think about it in a practical sense. We will defer the discussion on lower order terms until later in this section when they have a relevant context.
+
+If you multiply infinity by any number, no matter how large, what do you get? Infinity, because there is no concept of anything larger. If you add any number, no matter how large, to infinity what do you get? Infinity.
+
+Essentially there is no number that can be multiplied (coefficient) or added (constant term) to infinity that will have any effect on its size. For this reason we consider coefficients and constants as `negligible` and can discard, or cancel, them.
+
+From our pseudocode example that was reduced to ``4n + 1`` we can see that ``4`` is a coefficient of ``n`` and ``1`` is a constant term, both can be cancelled. 
+
+Finally we have applied all of the evaluation rules and reached our algorithm's classification, in Big-O Notation, of ``O(n)``!
 
 Non-Linear Big-O Values
 =======================
+
+
