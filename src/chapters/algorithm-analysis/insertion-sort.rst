@@ -25,7 +25,11 @@ Insertion Sort
 
 The first sorting algorithm we will be looking at is ``Insertion Sort``. This sort can be implemented in a couple of different ways, but we will be showing examples that sort a collection of numbers in ascending order. That is to say the smallest number will be the first element in the array, and the largest number will be the last element in the array.
 
+An Insertion sort is a sorting algorithm that puts a collection of data into ascending numerical order. It would take an array like this ``[3,6,2,4,1,10]`` and return an array like this ``[1,2,3,4,6,10]``
+
 An Insertion sort is an algorithm that loops through all the elements of an array and compares that value to all the previously sorted elements of the array. If it finds that the currently selected value is smaller than the value it is comparing to, it will insert that value into the position of the value it is being compared to. When an insert happens the nested loop breaks, and the outer loop moves to the next value in the remaining unsorted values of the array.
+
+The insertion sort achieves this order by looping through all the elements of an array, starting with the second element, and compares that element to every element that comes before it. If it finds that the element is smaller than any of the previous comparison elements it will move the element into the position of the comparison element. After it has this element in place, it moves to the next element in the array. In essence the code requires a loop nested inside of another loop making it's Big-O notation ``O(n^2)``.
 
 It would look something like this:
 
@@ -60,9 +64,7 @@ It would look something like this:
    // 10 is not smaller than 8 and we have made it through all the already sorted numbers, nothing needs to be changed
    [2, 3, 4, 7, 8, 10] // we have made it through all the elements of the array so we know we have a sorted array
 
-This algorithm starts with the second element of the array (since it depends on comparing 2 values at a time), and compares one specific number to all the previously sorted numbers inserting it into the sorted numbers until it has run through all the original elements of the array.
-
-In the example above to completely sort the array we need to first loop through all the elements of the array, and then from within that intial loop we will need to loop through all the currently sorted values. Since we have a nested loop the Big-O notation for an Insertion Sort algorithm would be ``O(n^2)``.
+Again we have a nested loop the Big-O notation for an Insertion Sort algorithm would be ``O(n^2)``.
 
 Non-Recursive Solution
 ^^^^^^^^^^^^^^^^^^^^^^
