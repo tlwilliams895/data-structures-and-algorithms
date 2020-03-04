@@ -94,7 +94,7 @@ Evaluating the Big-O of an Algorithm
 
 Let's consider the relationships between an algorithm, a step, and a sub-step. As discussed previously time complexity is referenced in units of operations. This is our most basic unit of description. We relate an operation to a dependence, if any, on the input size ``n`` using Big-O Notation.
 
-Our end goal is to `evaluate` the Big-O Value of an algorithm. But in order to do so we have to evaluate the Big-O of the steps and sub-steps that occur `within` the algorithm. 
+Our end goal is to `evaluate` the Big-O Value of an algorithm. But in order to do so we have to evaluate the Big-O of the steps and sub-steps that occur `within` the algorithm. These labels are just describing how operations can be grouped according to their common level.
 
 Consider the following pseudocode:
 
@@ -124,32 +124,51 @@ When evaluating an algorithm's Big-O we need to:
 Let's start by counting the operations from each level:
 
 - level 2: there are two ``O(1)`` operations
-- level 1: there are two ``O(1)`` operations
-- level 0: there is one ``O(n)`` operation
+- level 1: there are two ``O(1)`` operations, each with an operation at a sub-level
+- level 0: there is one ``O(n)`` operation, with operations at a sub-level
 
 In order to reduce each level we will need to learn a few basic rules:
 
 - **addition**: to sum the operations at the same level
-- **multiplication**: to combine the operations of a level with those of its sub-level
-- **cancellation**: to discard terms that have little impact
+- **multiplication**: to combine the operations of a sub-level with that of the level containing it
+- **cancellation**: to discard terms that have a negligible impact on growth rate
 
-.. admonition:: Note
+Keep in mind that the terms `addition` and `multiplication` are used conceptually to illustrate the rules. You can not `actually` add or multiply Big-O because it is just a notation not a value. So we apply these rules without writing the ``O``:
 
-  Keep in mind that the terms `addition` and `multiplication` are used conceptually to illustrate the rules. You can not `actually` add or multiply Big-O because it is just a notation not a value. 
+- level 2: there are two ``(1)`` operations
+- level 1: there are two ``(1)`` operations, each with an operation at a sub-level
+- level 0: there is one ``(n)`` operation, with operations at a sub-level
 
 Addition
 --------
 
-When evaluating operations on the same level we add them together. Continuing with the pseudocode example from above:
+When evaluating operations on the same level we add them together. ``O(1)`` operations are special because they run in constant time. So we can treat them as the number ``1`` itself.
 
-- level 2: ``O(1) + O(1) = 2*O(1)``
-- level 1: ``O(1) + O(1) = 2*O(1)``
-- level 0: ``O(n)``
+Continuing with the pseudocode example from above:
 
-Now that we have summed the operations on each level we need to combine the sub-levels into the levels above them. 
+- level 2: ``(1) + (1) = 2``
+- level 1: ``(1) + (1) = 2``
+- level 0: ``(n)``
+
+Now that we have summed the operations we need a way to reduce the sub-levels into the levels that contain them until we reach the top level---the algorithm itself.
 
 Multiplication
 --------------
 
+Levels that contain sub-levels can be combined using multiplication. We take the sum of a sub-level and multiply it by the level it is contained in. Continuing with the pseudocode example from above:
+
+- level 2 merged with level 1: ``2 * 2 = 4``
+
+We then repeat this reduction until we reach the top level:
+
+- level 1 merged with level 0: ``4 * (n) = 4*n``
+
+At this point we may be tempted classify our algorithm as ``O(4n)``. But we know the algorithm's actual classification is ``O(n)``. Why do we get rid of, or `cancel` the ``4``? 
+
 Cancellation
 ------------ 
+
+
+
+Non-Linear Big-O Values
+=======================
