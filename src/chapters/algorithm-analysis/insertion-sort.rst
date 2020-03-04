@@ -174,3 +174,10 @@ Recursive Solution
        }
      }
    }
+
+Concept Checks
+--------------
+
+- What is sorting?
+- Why is sorting valuable?
+- What is the Big-O Notation of Insertion Sort?
