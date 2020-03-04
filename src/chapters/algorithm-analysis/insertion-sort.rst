@@ -99,19 +99,78 @@ Again we have a nested loop the Big-O notation for an Insertion Sort algorithm w
 Non-Recursive Solution
 ^^^^^^^^^^^^^^^^^^^^^^
 
-An Insertion sort can be solved recursively or non-recursively we will show you the solution both recursively, and non-recursively.
+.. sourcecode:: C#
 
-What does the solution look like in C#?
+   using System;
+   using System.Collections.Generic;
 
-How do we calculate this algorithm's run time complexity?
+   class MainClass {
 
-How do we now put that run time complexity into Big O notation?
+     public static List<int> insertionSort(List<int> arr) {
+       Console.WriteLine("Original Array:");
+       arr.ForEach(Console.WriteLine);
+       var sortedArray = new List<int>();
+       sortedArray.Add(arr[0]);
+       for(int i = 1; i < arr.Count; i++) {
+         int new_element = arr[i];
+         bool inserted = false;
+         int count = sortedArray.Count;
+         for(int j = 0; j < count; j++) {
+           if(new_element < sortedArray[j]) {
+             sortedArray.Insert(j, new_element);
+             inserted = true;
+             break;
+           }
+         }
+         if(!inserted) {
+           sortedArray.Add(new_element);
+         }
+       }
+       return sortedArray;
+     }
+
+     public static void Main (string[] args) {
+       var arr = new List<int>() {4, 3, 8, 7, 2, 10};
+       var sortedArray = insertionSort(arr);
+       Console.WriteLine("---------");
+       Console.WriteLine("Sorted Array:");
+       sortedArray.ForEach(Console.WriteLine);
+     }
+   }
 
 Recursive Solution
 ^^^^^^^^^^^^^^^^^^
 
-What does the solution look like in C#?
+.. sourcecode:: C#
 
-How do we calculate this algorithm's run time complexity?
+   using System;
 
-How do we now put that run time complexity into Big O notation?
+   class MainClass {
+
+     public static void recursiveInsertionSort(int[] arr, int n) {
+       if(n == 1) {
+         return;
+       }
+       recursiveInsertionSort(arr, n - 1);
+
+       int last = arr[n - 1]; 
+       int j = n - 2;
+
+       while (j >= 0 && arr[j] > last) 
+         { 
+             arr[j + 1] = arr[j]; 
+             j--; 
+         } 
+         arr[j + 1] = last; 
+     }
+
+     public static void Main (string[] args) {
+       int []arr = {4, 3, 8, 7, 2, 10}; 
+        
+       recursiveInsertionSort(arr, arr.Length); 
+      
+       for(int i = 0; i < arr.Length; i++) {
+         Console.Write(arr[i] + " ");
+       }
+     }
+   }
