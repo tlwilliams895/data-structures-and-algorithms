@@ -25,44 +25,72 @@ Insertion Sort
 
 The first sorting algorithm we will be looking at is ``Insertion Sort``. This sort can be implemented in a couple of different ways, but we will be showing examples that sort a collection of numbers in ascending order. That is to say the smallest number will be the first element in the array, and the largest number will be the last element in the array.
 
-An Insertion sort is a sorting algorithm that puts a collection of data into ascending numerical order. It would take an array like this ``[3,6,2,4,1,10]`` and return an array like this ``[1,2,3,4,6,10]``
+An Insertion sort is a sorting algorithm that puts a collection of data into ascending numerical order. It would take an array like this ``[4, 3, 8, 7, 2, 10]`` and return an array like this ``[2, 3, 4, 7, 8, 10]``
 
 An Insertion sort is an algorithm that loops through all the elements of an array and compares that value to all the previously sorted elements of the array. If it finds that the currently selected value is smaller than the value it is comparing to, it will insert that value into the position of the value it is being compared to. When an insert happens the nested loop breaks, and the outer loop moves to the next value in the remaining unsorted values of the array.
 
 The insertion sort achieves this order by looping through all the elements of an array, starting with the second element, and compares that element to every element that comes before it. If it finds that the element is smaller than any of the previous comparison elements it will move the element into the position of the comparison element. After it has this element in place, it moves to the next element in the array. In essence the code requires a loop nested inside of another loop making it's Big-O notation ``O(n^2)``.
 
-It would look something like this:
+Let's manually step through an array to see how the Insertion Sort works. We will start with the array above ``[4, 3, 8, 7, 2, 10]``, and end up with ``[2, 3, 4, 7, 8, 10]``.
 
 .. sourcecode::
 
    [4, 3, 8, 7, 2, 10] // original unsorted array
 
-   // pass 1 -- sorted elements: [4] comparison value: 3
-   // 3 is smaller than 4 so it needs to be moved before 4 -- since an insert was made move onto the next value in the un-sorted array
-   [3, 4, 8, 7, 2, 10] // new array after first pass
+   // -- pass 1 --
+   // sorted elements: [4]
+   // new element: 3
+   //   -- pass a --
+   //   new element (3) is smaller than sorted elements [0] (4)
+   //   insert new element (3) into sorted elements at sorted elements [0] (4)
+   //   break out of nested loop
    
-   // pass 2 -- sorted elements: [3, 4] comparison value: 8
-   // 8 is not smaller than 3
-   // 8 is not smaller than 4, and we have made it through all the already sorted numbers, nothing needs to be changed
-   [3, 4, 8, 7, 2, 10] // array after second pass
+   // -- pass 2 --
+   // sorted elements: [3, 4]
+   // new element: 8
+   //   -- pass a --
+   //   new element (8) is not smaller than sorted elements[0] (3)
+   //   -- pass b --
+   //   new element (8) is not smaller than sorted elements[1] (4)
+   //   insert new element to the end of sorted elements
+
+   // -- pass 3 --
+   // sorted elements: [3, 4, 8]
+   // new element: 7
+   //   -- pass a --
+   //   new element (7) is not smaller than sorted elements[0] (3)
+   //   -- pass b --
+   //   new element (7) is not smaller than sorted elements[1] (4)
+   //   -- pass c --
+   //   new element (7) is smaller than sorted elements[2] (8)
+   //   insert new element (7) into sorted elements at sorted elements[2] (8)
+   //   break out of nested loop
    
-   // pass 3 -- sorted elements: [3, 4, 8] comparison value: 7
-   // 7 is not smaller than 3
-   // 7 is not smaller than 4
-   // 7 is smaller than 8 so it needs to be moved before 8 -- since an insert was made move onto the next value in the un-sorted array
-   [3, 4, 7, 8, 2, 10] // array after third pass
+   // -- pass 4 --
+   // sorted elements: [3, 4, 7, 8]
+   // new element: 2
+   //   -- pass a --
+   //   new element (2) is smaller than sorted elements[0] (3)
+   //   insert new element (2) into sorted elements at sorted elements[0]
+   //   break out of nested loop
 
-   // pass 4 -- sorted elements: [3, 4, 7, 8] comparison value: 2
-   // 2 is smaller than 3 so it needs to be moved before 3 -- since an insert was made move onto th enext value in the un-sorted array
-   [2, 3, 4, 7, 8, 10]
-
-   // pass 5 -- sorted elements: [2, 3, 4, 7, 8] comparison value: 10
-   // 10 is not smaller than 2
-   // 10 is not smaller than 3
-   // 10 is not smaller than 4
-   // 10 is not smaller than 7
-   // 10 is not smaller than 8 and we have made it through all the already sorted numbers, nothing needs to be changed
-   [2, 3, 4, 7, 8, 10] // we have made it through all the elements of the array so we know we have a sorted array
+   // -- pass 5 --
+   // sorted elements: [2, 3, 4, 7, 8]
+   // new element: 10
+   //   -- pass a --
+   //   new element (10) is not smaller than sorted elements[0] (2)
+   //   -- pass b --
+   //   new element (10) is not smaller than sorted elements[1] (3)
+   //   -- pass c --
+   //   new element (10) is not smaller than sorted elements[2] (4)
+   //   -- pass d --
+   //   new element (10) is not smaller than sorted elements[3] (7)
+   //   -- pass e --
+   //   new element (10) is not smaller than sorted elements[4] (8)
+   //   insert new element (10) to the end of sorted elements
+   
+   // all loops have completed
+   // sorted elements: [2, 3, 4, 7, 8, 10]
 
 Again we have a nested loop the Big-O notation for an Insertion Sort algorithm would be ``O(n^2)``.
 
