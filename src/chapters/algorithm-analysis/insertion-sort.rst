@@ -12,6 +12,8 @@ Insertion Sort
 Sorting
 -------
 
+``Sorting`` is the act of taking a collection of data and rearranging it into a specific order. The order can be numerical ascending, numerical descending, alphabetical, by time, etc,.
+
 Some of the most famous algorithms are sorting algorithms. Sorting algorithms are important for many reasons, but for the purposes of this class they are primarly important because searching through unsorted data always takes ``O(n)`` time. You have to check against every single value every time you search for something. However, if your data is sorted you can implement different searching algorithms that are more performant than ``O(n)``. We will see some of these searching algorithms in future lessons.
 
 That being said not all sorting algorithms are equal. A sorting algorithm comes with it's own Big-O Notation, making some sorting algorithms better depending on the incoming data.
