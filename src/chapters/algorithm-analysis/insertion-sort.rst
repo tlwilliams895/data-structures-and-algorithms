@@ -43,7 +43,7 @@ Let's manually step through an array to see how the Insertion Sort works. We wil
    //   -- pass a --
    //   new element (3) is smaller than sorted elements [0] (4)
    //   insert new element (3) into sorted elements at sorted elements [0] (4)
-   //   break out of nested loop
+   //   break out of inner loop
    
    // -- pass 2 --
    // sorted elements: [3, 4]
@@ -52,6 +52,7 @@ Let's manually step through an array to see how the Insertion Sort works. We wil
    //   new element (8) is not smaller than sorted elements[0] (3)
    //   -- pass b --
    //   new element (8) is not smaller than sorted elements[1] (4)
+   //   -- end of inner loop --
    //   new element (8) was not smaller than any sorted elements so insert it at the end of sorted elements
 
    // -- pass 3 --
@@ -64,7 +65,7 @@ Let's manually step through an array to see how the Insertion Sort works. We wil
    //   -- pass c --
    //   new element (7) is smaller than sorted elements[2] (8)
    //   insert new element (7) into sorted elements at sorted elements[2] (8)
-   //   break out of nested loop
+   //   break out of inner loop
    
    // -- pass 4 --
    // sorted elements: [3, 4, 7, 8]
@@ -72,7 +73,7 @@ Let's manually step through an array to see how the Insertion Sort works. We wil
    //   -- pass a --
    //   new element (2) is smaller than sorted elements[0] (3)
    //   insert new element (2) into sorted elements at sorted elements[0]
-   //   break out of nested loop
+   //   break out of inner loop
 
    // -- pass 5 --
    // sorted elements: [2, 3, 4, 7, 8]
@@ -87,6 +88,7 @@ Let's manually step through an array to see how the Insertion Sort works. We wil
    //   new element (10) is not smaller than sorted elements[3] (7)
    //   -- pass e --
    //   new element (10) is not smaller than sorted elements[4] (8)
+   //   -- end of inner loop --
    //   new element (10) was not smaller than any sorted elements so insert it at the end of sorted elements
    
    // all loops have completed
