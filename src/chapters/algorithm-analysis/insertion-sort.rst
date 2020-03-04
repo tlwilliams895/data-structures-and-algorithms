@@ -9,23 +9,19 @@ Insertion Sort
 
 .. TODO:: Link back to the recursion lesson in LC101.
 
-Importance of Sorting
----------------------
+Sorting
+-------
 
-As you have seen from the previous sections algorithms and their analysis are highly dependant on the size of the incoming input. If you have an algorithm that needs to locate a value in an array of data, and your data is not in some form of order, you would be stuck looping through every single element in the array of data ``O(n)``. However, if your data *is sorted* you can use different looping techniques. 
+Some of the most famous algorithms are sorting algorithms. Sorting algorithms are important for many reasons, but for the purposes of this class they are primarly important because searching through unsorted data always takes ``O(n)`` time. You have to check against every single value every time you search for something. However, if your data is sorted you can implement different searching algorithms that are more performant than ``O(n)``. We will see some of these searching algorithms in future lessons.
 
-Instead of looping through every element of data, you can compare against an element in the middle and check if the value is greater, or smaller. You can then split the middle again and check if the value is greater, or smaller. You can keep using this strategy until you find the value. This algorithm would still be dependant on the size of the incoming input, but instead of needing to loop over all elements (``O(n)``) you are only looping through a subsection of the elements (``O(log n)``)!
+That being said not all sorting algorithms are equal. A sorting algorithm comes with it's own Big-O Notation, making some sorting algorithms better depending on the incoming data.
 
-Sorting your array can be highly beneficial when it comes to an algorithm's runtime efficiency.
-
-Throughout this book we will introduce a number of various sorting algorithms. To sort data an algorithm is required, and we will provide the Big-O analysis of each sorting algorithm which will show that not all sorting algorithms are equal. Some are more efficient for small sets of data, or for large sets of data. Most programming languages already have these sorting algorithms as a part of their standard library when working with data structures. However, it is valuable to know how they work, and how to implement them if you need to write your own custom sorting algorithm.
+Throughout this book we will introduce a number of various sorting algorithms. We will provide information about each sort which will be helpful in deciding which sort is better for which dataset. Some are more efficient for small sets of data, or for large sets of data. Most programming languages already have these sorting algorithms as a part of their standard library when working with data structures. However, it is valuable to know how they work, and how to implement them if you need to write your own custom sorting algorithm.
 
 Insertion Sort
 --------------
 
-The first sorting algorithm we will be looking at is ``Insertion Sort``. This sort can be implemented in a couple of different ways, but we will be showing examples that always sort a collection of numbers in ascending order. That is to say the smallest number will be the first element in the array, and the largest number will be the last element in the array.
-
-If you have ever played a card game that requires sorting cards you may already be familiar with how this algorithm operates.
+The first sorting algorithm we will be looking at is ``Insertion Sort``. This sort can be implemented in a couple of different ways, but we will be showing examples that sort a collection of numbers in ascending order. That is to say the smallest number will be the first element in the array, and the largest number will be the last element in the array.
 
 An Insertion sort is an algorithm that loops through all the elements of an array and compares that value to all the previously sorted elements of the array. If it finds that the currently selected value is smaller than the value it is comparing to, it will insert that value into the position of the value it is being compared to. When an insert happens the nested loop breaks, and the outer loop moves to the next value in the remaining unsorted values of the array.
 
