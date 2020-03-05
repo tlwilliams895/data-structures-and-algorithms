@@ -32,7 +32,7 @@ When discussing Big-O it is common to write **pseudocode** to represent the conc
 ``O(1)``: Constant Time
 -----------------------
 
-A Big-O of ``1`` means the time complexity is **independent of the size of the input ``n``**. No matter how large the input size is the growth rate will always remain constant. In other words its growth rate is a fixed value represented graphically as a horizontal line. 
+A Big-O of ``1`` means the time complexity is **independent of the size of the input ``n``**. No matter how large the input size is the growth rate will always remain constant. In other words its growth rate is constant and represented graphically as a horizontal line. 
 
 - A step classified as of ``O(1)`` means it is an operation that runs in constant time.
 - By extension an algorithm classified as ``O(1)`` means the execution of its steps will run constant time. 
@@ -57,7 +57,7 @@ A Big-O of ``1`` means the time complexity is **independent of the size of the i
 ``O(n)``: Linear Time
 ---------------------
 
-A Big-O of ``n`` means the time complexity **is directly proportional to the size of the input** ``n``. As the input size is increased it will grow at a consistent pace. It is represented graphically as a positively sloped line. 
+A Big-O of ``n`` means the time complexity **is directly proportional to the size of the input** ``n``. As the input size is increased it will grow at a constant rate. It is represented graphically as a positively sloped line. 
 
 It is associated programmatically with a finite loop such as a ``for`` loop.
 
@@ -85,91 +85,106 @@ It is associated programmatically with a finite loop such as a ``for`` loop.
       # one sub-step must increment the counter to ensure the loop will eventually end
       count++ 
 
-Why do we say that ``O(n)`` will take `at most` ``n`` number of times? Because this classification tells us the `upper bound` of what is possible but the reality will depend on how the algorithm is actually used. 
+Why do we say that ``O(n)`` will take `at most` ``n`` number of operations? Because this classification tells us the `upper bound` of what is possible but the actual number of operations will depend on how the algorithm is used in practice. 
 
 For example, if we are searching for a value in a list of size ``n`` we would perform a comparison operation `up to` ``n`` times. We may find the match in the beginning (1 iteration) or at the end (``n`` iterations) depending on where it is located. We can see that the practical number of iterations depends on `the goal of the algorithm and its steps`, along with other factors covered later in this book.
 
 Evaluating the Big-O of an Algorithm
 ====================================
 
-Let's consider the relationships between an algorithm, a step, and a sub-step. As discussed previously time complexity is referenced in units of operations. This is our most basic unit of description. We relate an operation to a dependence, if any, on the input size ``n`` using Big-O Notation.
+As discussed previously time complexity is referenced in units of operations. Some operations take a constant amount of time while others are dependent on the size of the input ``n``. Algorithms are comprised of a series of steps, each of which can be thought of as an operation. Steps can also have sub-steps within them such as an operation taken within a loop.
 
-Our end goal is to `evaluate` the Big-O Value of an algorithm. But in order to do so we have to evaluate the Big-O of the steps and sub-steps that occur `within` the algorithm. These labels are just describing how operations can be grouped according to their common level.
+Our end goal is to `evaluate` the Big-O Value of an algorithm. But in order to do so we have to evaluate the Big-O of the steps and sub-steps `within` it. We group and evaluate steps according to their **scope**.
 
-Consider the following pseudocode:
+In the pseudocode below we use indentation to visualize the scope of each step and any sub-step within it. 
 
 .. admonition:: Pseudocode
 
   .. sourcecode:: python
 
     function algorithm(n):
-      print "let's learn how evaluation works!", # level 0, O(1)
-      repeat from 0 to n: # level 0, O(n)
-        if n equals 1: # level 1, O(1)
-          print "it is 1" # level 2, O(1)
-        if n equals 5: # level 1, O(1)
-          print "it is 5" # level 2, O(1)
+      # outermost scope, print and loop operations
+
+      print "let's learn how evaluation works!"
+
+      repeat from 0 to n:
+        # loop scope, nested print operation
+        
+        print "I am in the loop scope" # O(1)
+
+        print n 
 
 After evaluating this algorithm we classify it as ``O(n)``. But how did we arrive at this classification?
 
-In our pseudocode we use indentation to visualize the `level` that each operation belongs to. You can see that the relationship, in terms of levels, becomes: 
-
+.. worth including?
+You can see that the relationship, in terms of scopes, becomes: 
   algorithm > step > sub-step > ...sub-step(s)...
 
-When evaluating an algorithm's Big-O we need to:
+When evaluating an algorithm's Big-O we need to evaluate each scope as a group. We start from the innermost scope and reduce outwards to the final scope of the algorithm itself.
 
-- **count the Big-O of operations at each level**
-- **reduce each level to a common Big-O**
-- **repeat until we reduce to a single Big-O for the algorithm** 
+.. admonition:: Fun Fact
 
-Let's start by counting the operations from each level:
+  We are using an algorithm to evaluate and classify other algorithms!
 
-- level 2: there are two ``O(1)`` operations
-- level 1: there are two ``O(1)`` operations, each with an operation at a sub-level
-- level 0: there is one ``O(n)`` operation, with operations at a sub-level, and one ``O(1)`` operation
+#. **count**: classify and sum the Big-O of each operation of the inner scope
+#. **reduce**: multiply the sum of the inner scope with the Big-O of its outer operation
+#. repeat this process until reaching the outermost scope
 
-In order to reduce each level we will need to learn a few basic rules:
+As a final step we **cancel** out terms that have a negligible effect on the growth rate. The result, in Big-O Notation, is the classification of the algorithm.
 
-- **addition**: to sum the operations at the same level
-- **multiplication**: to combine the operations of a sub-level with that of the level containing it
-- **cancellation**: to discard terms that have a negligible impact on growth rate
+.. todo:: an example that supports renaming "Big-O Value" to "Big-O Classification". "Big-O Value...not a value" is confusing
 
-Keep in mind that the terms `addition` and `multiplication` are used conceptually to illustrate the rules. You can not `actually` add or multiply Big-O because it is just a notation not a value. So we apply these rules without writing the ``O``:
+.. admonition:: Note
 
-- level 2: there are two ``(1)`` operations
-- level 1: there are two ``(1)`` operations, each with an operation at a sub-level
-- level 0: there is one ``(n)`` operation, with operations at a sub-level, and one ``(1)`` operation
+  Keep in mind that the use of `addition` and `multiplication` are used conceptually. You can not `actually` add or multiply a Big-O Value because it is just a notation not a value.
+  
+We apply this evaluation considering the value inside the notation. For example, ``O(1)`` and ``O(n)`` are treated as ``1`` and ``n`` respectively.
 
 Addition
 --------
 
-When evaluating operations on the same level we add them together. ``O(1)`` operations are special because they run in constant time. So we can treat them as the constant number ``1`` itself.
+When evaluating operations in the same scope we add them together.
 
-Continuing with the pseudocode example from above:
+Let's begin with the innermost scope---the ``loop scope``. It contains a two print operations which both run in constant time.
 
-- level 2: ``(1) + (1) = 2``
-- level 1: ``(1) + (1) = 2``
-- level 0: ``(n) + (1) = n + 1``
+.. admonition:: Pseudocode
 
-Now that we have summed the operations we need a way to reduce the sub-levels into the levels that contain them until we reach the top level---the algorithm itself.
+  .. sourcecode:: python
+      repeat from 0 to n:
+        # loop scope, nested print operation
+        
+        print "I am in the loop scope" # O(1)
+
+        print n # O(1)
+
+The ``loop scope`` sum, with two ``O(1)`` operations, is evaluated as ``1 + 1 = 2``.
 
 Multiplication
 --------------
 
-Levels that contain sub-levels can be combined using multiplication. We take the sum of a sub-level and multiply it by the level it is contained in. Continuing with the pseudocode example from above:
+A scope is merged with its outer operation using multiplication. We take the sum of the inner scope and multiply it by the operation it is contained in.
 
-- level 2 merged with level 1: ``2 * 2 = 4``
+The loop operation will repeat up to the input size, ``n``, number of times.
 
-We then repeat this reduction until we reach the top level. Here we have to take note of which level contains a sub-level. The loop should be grouped with its sub-level for the multiplication:
+.. admonition:: Pseudocode
 
-- level 1 merged with level 0: ``(4 * n) + 1 = 4*n + 1``
+  .. sourcecode:: python
+      repeat from 0 to n: # O(n)
+        # loop scope, nested print operation
 
-At this point we may be tempted classify our algorithm as ``O(4n + 1)``. But we know the algorithm's actual classification is ``O(n)``. Why do we get rid of, or `cancel` the coefficient ``4`` and the constant term ``1``? 
+        print "I am in the loop scope" # O(1)
+        print n # O(1)
+
+The loop scope sum is ``2``. The loop operation runs in ``O(n)``. Its product is evaluated as ``2 * n`` or ``2n``.
+
+The ``outermost scope`` contains the reduced loop operation and a print operation. We take the sum of the print and the ``loop scope's`` product as ``2n + 1``.
+
+At this point we may be tempted classify our algorithm as the final sum, ``2n + 1``. But we saw the algorithm's actual classification is ``O(n)``. Why do we get rid of, or `cancel` the coefficient ``2`` and the constant term ``1``? 
 
 Cancellation
 ------------ 
 
-Recall that Big-O represents the theoretical upper bound of an algorithm's classification. We quality this upper bound as theoretical because it is determined when considering an input size ``n`` of the non-real value infinity. 
+Recall that Big-O represents the theoretical upper bound of an algorithm's classification. We qualify this upper bound as theoretical because it is determined when approximating an input size ``n`` at a non-real value of infinity. 
 
 When we consider the behavior at this theoretical upper bound we recognize that the following can be discarded: 
 
@@ -177,15 +192,13 @@ When we consider the behavior at this theoretical upper bound we recognize that 
 - coefficients: any number that is multiplied with a variable
 - lower order terms: variables at a power less than the highest found in a polynomial 
 
-To avoid getting bogged down in the mathematical details of **asymptotic analysis** let's think about it in a practical sense. We will defer the discussion on lower order terms until later in this section when they have a relevant context.
+To avoid getting bogged down in the mathematical details of **asymptotic analysis** that supports cancellation let's think about constants and coefficients in a practical sense. We will defer the discussion on lower order terms until later in this section when they have a relevant context.
 
 If you multiply infinity by any number, no matter how large, what do you get? Infinity, because there is no concept of anything larger. If you add any number, no matter how large, to infinity what do you get? Infinity.
 
-Essentially there is no number that can be multiplied (coefficient) or added (constant term) to infinity that will have any effect on its size. For this reason we consider coefficients and constants as `negligible` and can discard, or cancel, them.
+Essentially there is no number that can be multiplied (coefficient) or added (constant term) to the factor of ``n`` that will have any effect on the growth rate. For this reason we consider coefficients and constants as `negligible` relative to the ``n`` term itself and can discard them.
 
-From our pseudocode example that was reduced to ``4n + 1`` we can see that ``4`` is a coefficient of ``n`` and ``1`` is a constant term, both can be cancelled. 
-
-Finally we have applied all of the evaluation rules and reached our algorithm's classification, in Big-O Notation, of ``O(n)``!
+From our pseudocode example that was reduced to ``2n + 1`` we can see that ``2`` is a coefficient of ``n`` and ``1`` is a constant term, both can be cancelled. After cancelling we are left with ``n``. In Big-O Notation we can clasiffy the algorithm as ``O(n)``!
 
 Non-Linear Big-O Values
 =======================
