@@ -43,3 +43,21 @@ node we need to know what is the middle of the reamining nodes between 9 and
 know what is the middle of the remaining nodes between 18 and the last element
 of the array (rounding up): 30.
 We would need to keep this up to fill out the rest of the 
+
+Depth
+^^^^^
+
+.. what is the concept of depth? How does it pertain to BSTs?
+
+Balance
+^^^^^^^
+
+.. what do we mean when we say the BST is balanced?
+
+.. what would happen if the tree were to become unbalanced?
+
+.. logically (conceptually) what would you need to do to balance, and unbalanced tree?
+
+
+Concept Checks
+--------------

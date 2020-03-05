@@ -79,4 +79,3 @@ Since Binary Search is so powerful a unique data structure has been created
 for it. It's essentially a data structure that is structured around splitting
 segments of data in half. We will explore this new structure further in the
 next section.
-
