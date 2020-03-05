@@ -10,18 +10,18 @@ In this section we will learn about the most common Big-O Values and how each of
 
 Before we begin let's take a look at a visual representation of the Big-O Values you are likely to encounter. We will soon explore each of these in more detail. For now use this graph to form a mental model of each of their upper bound behaviors.
 
-.. todo:: preview of all the common values on a graph (operations vs input size). something like this https://s14-eu5.startpage.com/cgi-bin/serveimage?url=https%3A%2F%2Fwww.cdn.geeksforgeeks.org%2Fwp-content%2Fuploads%2Fmypic.png&sp=b82f0f2b0994a01b2ddadf6679f37c21&anticache=340636
+.. todo:: preview of the common values on a graph (operations vs input size). something like this https://s14-eu5.startpage.com/cgi-bin/serveimage?url=https%3A%2F%2Fwww.cdn.geeksforgeeks.org%2Fwp-content%2Fuploads%2Fmypic.png&sp=b82f0f2b0994a01b2ddadf6679f37c21&anticache=340636
 
 Linear Big-O Values
 ===================
 
-.. todo:: consider replacing all instances of Big-O Value with Big-O Classification. it provides the same distinction from Big-O Notation but is clearer and reinforces the idea that we are dealing with classifications not the algorithms themselves
+.. todo:: consider replacing all instances of "Big-O Value" with "Big-O Classification". it provides the same arbitrary distinction from Big-O Notation but may be better at reinforcing the idea that we are dealing with classifications not the algorithms themselves
 
-From the graph above you likely noticed the two linear Big-O Values, ``O(1)`` and ``O(n)``. Before getting into more complex Values let's explore these basic notations in the context of individual steps. Later we will learn how to use Big-O arithmetic to combine and reduce the steps of an algorithm to determine its Big-O Value. 
+From the graph above you likely noticed the two linear Big-O Values, ``O(1)`` and ``O(n)``. Before getting into the more complex non-linear Values let's explore these basic notations first.
 
 .. admonition:: Tip
 
-  Remember that the Big-O of an algorithm is made up of the Big-O `of the steps within it`. 
+  Remember that the Big-O of an algorithm is evaluated using the Big-O `of the steps within it`. 
 
 .. index:: pseudocode
 
@@ -53,6 +53,8 @@ A Big-O of ``1`` means the time complexity is **independent of the size of the i
     # comparing two elements in a list of size n
     if list_of_size_n[0] equals list_of_size_n[5]:
       # do some sub-step(s)
+
+.. index:: O(n)
 
 ``O(n)``: Linear Time
 ---------------------
@@ -108,7 +110,7 @@ In the pseudocode below we use indentation to visualize the scope of each step a
       print "let's learn how evaluation works!"
 
       repeat from 0 to n:
-        # loop scope, nested print operation
+        # loop scope, nested print operations
         
         print "I am in the loop scope" # O(1)
 
@@ -120,15 +122,16 @@ After evaluating this algorithm we classify it as ``O(n)``. But how did we arriv
 You can see that the relationship, in terms of scopes, becomes: 
   algorithm > step > sub-step > ...sub-step(s)...
 
-When evaluating an algorithm's Big-O we need to evaluate each scope as a group. We start from the innermost scope and reduce outwards to the final scope of the algorithm itself.
+When classifying an algorithm's Big-O we need to evaluate each scope within it as a group. We start from the innermost scope and reduce outwards to the final scope of the algorithm itself.
 
 .. admonition:: Fun Fact
 
-  We are using an algorithm to evaluate and classify other algorithms!
+  We use an algorithm to evaluate and classify other algorithms!
 
 #. **count**: classify and sum the Big-O of each operation of the inner scope
 #. **reduce**: multiply the sum of the inner scope with the Big-O of its outer operation
-#. repeat this process until reaching the outermost scope
+#. repeat these steps for each scope in the algorithm
+#. **cancel**: 
 
 As a final step we **cancel** out terms that have a negligible effect on the growth rate. The result, in Big-O Notation, is the classification of the algorithm.
 
@@ -140,8 +143,8 @@ As a final step we **cancel** out terms that have a negligible effect on the gro
   
 We apply this evaluation considering the value inside the notation. For example, ``O(1)`` and ``O(n)`` are treated as ``1`` and ``n`` respectively.
 
-Addition
---------
+Summing the Scope
+-----------------
 
 When evaluating operations in the same scope we add them together.
 
@@ -151,38 +154,38 @@ Let's begin with the innermost scope---the ``loop scope``. It contains a two pri
 
   .. sourcecode:: python
       repeat from 0 to n:
-        # loop scope, nested print operation
+        # loop scope, nested print operations
         
         print "I am in the loop scope" # O(1)
 
         print n # O(1)
 
-The ``loop scope`` sum, with two ``O(1)`` operations, is evaluated as ``1 + 1 = 2``.
+The sum of the ``loop scope``, containing two ``O(1)`` operations, is evaluated as ``1 + 1 = 2``.
 
-Multiplication
---------------
+Reducing the Scope
+------------------
 
-A scope is merged with its outer operation using multiplication. We take the sum of the inner scope and multiply it by the operation it is contained in.
+A scope is reduced by taking the **product** of its sum and its outer operation. We take the sum of the inner scope and multiply it by the operation it is contained in.
 
-The loop operation will repeat up to the input size, ``n``, number of times.
+The loop operation may repeat up to the input size, ``n``, number of times so we say it runs in ``O(n)`` time.
 
 .. admonition:: Pseudocode
 
   .. sourcecode:: python
       repeat from 0 to n: # O(n)
-        # loop scope, nested print operation
+        # loop scope, nested print operations
 
         print "I am in the loop scope" # O(1)
         print n # O(1)
 
-The loop scope sum is ``2``. The loop operation runs in ``O(n)``. Its product is evaluated as ``2 * n`` or ``2n``.
+Using the ``loop scope`` sum of ``2`` we evaluate the product with the loop operation as ``2 * n = 2n``.
 
-The ``outermost scope`` contains the reduced loop operation and a print operation. We take the sum of the print and the ``loop scope's`` product as ``2n + 1``.
+The ``outermost scope`` contains the reduced loop operation, ``2n``, and a print operation, ``1``. We take the sum of these operations as they are in the same scope. The outermost scope sum is evaluated as ``2n + 1``.
 
 At this point we may be tempted classify our algorithm as the final sum, ``2n + 1``. But we saw the algorithm's actual classification is ``O(n)``. Why do we get rid of, or `cancel` the coefficient ``2`` and the constant term ``1``? 
 
-Cancellation
------------- 
+Cancelling Negligible Terms
+---------------------------
 
 Recall that Big-O represents the theoretical upper bound of an algorithm's classification. We qualify this upper bound as theoretical because it is determined when approximating an input size ``n`` at a non-real value of infinity. 
 
@@ -198,9 +201,155 @@ If you multiply infinity by any number, no matter how large, what do you get? In
 
 Essentially there is no number that can be multiplied (coefficient) or added (constant term) to the factor of ``n`` that will have any effect on the growth rate. For this reason we consider coefficients and constants as `negligible` relative to the ``n`` term itself and can discard them.
 
-From our pseudocode example that was reduced to ``2n + 1`` we can see that ``2`` is a coefficient of ``n`` and ``1`` is a constant term, both can be cancelled. After cancelling we are left with ``n``. In Big-O Notation we can clasiffy the algorithm as ``O(n)``!
+From our pseudocode example that was reduced to ``2n + 1`` we can see that ``2`` is a coefficient of ``n`` and ``1`` is a constant term, both can be cancelled. After cancelling we are left with ``n``. Writing this value in Big-O Notation we finally classify the algorithm as ``O(n)``.
+
+This example used linear Big-O Values to illustrate the process of evaluation simply. We will explore the common non-linear Big-O Values next. While they may appear more complex on the surface they are evaluated in the same methodical way---from the inside out using sums, products, and cancelling negligible terms.
 
 Non-Linear Big-O Values
 =======================
 
+Unlike the linear Big-O Values the non-linear classifications are bounded at varying input sizes that cause their performance to degrade rapidly. At their respective upper bounds the number of operations they take to process larger inputs becomes impractical.  
 
+``O(n^2)``: Quadratic Time
+--------------------------
+
+A Big-O of ``n^2`` means the time complexity is **quadratic with respect to the size of the input ``n``**. In other words the number of operations required increases with the square of ``n``. It is represented graphically as the positive half of a parabola, a U-shaped curve.
+
+.. index:: nested loops
+.. index:: recursive function
+
+In practice ``O(n^2)`` is related to two finite loops---one within the other. This is easily identified as as a pair of **nested loops** that each may iterate `at most` ``n`` times each. 
+
+Recall that a loop can be treated synonymously with a **recursive function call**. ``O(n^2)`` can indicate a nested recursive call within a traditional finite loop.  
+
+- A step classified as ``O(n^2)`` is a reduction of loop operation within another loop operation.
+- An algorithm classified as ``O(n^2)`` means the execution of its steps will take `at most` a number of operations equal to the square of the input size.
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+
+    # a nested loop step driven by a numeric input of size n
+    repeat from 0 to n times:
+      # some other sub-step(s)
+      repeat from 0 to n times:
+        # some sub-step(s)
+
+    # an algorithm with recursion in a loop
+    function recursing(n):
+      for element in array_of_size_n:
+        # some other sub-step(s)
+
+        # the breakout condition to ensure finite recursion
+        if a breakout condition is not met:
+          # where ...n represents some recursive usage of n
+          return recursing(...n)
+
+Let's consider an example to see how an algorithm is evaluated to a classification ``O(n^2)``:
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+
+    function nested_loops(n):
+      # algorithm scope
+
+      outer_count = 0
+      inner_count = 0
+
+      repeat from 0 to n times:
+        # outer loop scope
+
+        print outer_count
+        repeat from 0 to n times:
+          # inner loop scope
+
+          print inner_count
+          inner_count++
+
+        outer_count++
+
+Begin at the innermost scope:
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+        repeat from 0 to n times: # O(n)
+          # inner loop scope
+
+          print inner_count # O(1)
+          inner_count++ # O(1)
+
+``inner loop scope`` is evaluated as ``n * (1 + 1) = 2n``
+
+The ``outer loop scope`` is then considered:
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+      repeat from 0 to n times: # O(n)
+        # outer loop scope
+
+        print outer_count # O(1)
+        
+        repeat from 0 to n times: # inner loop reduced to 2n
+
+        outer_count++ # O(1)
+
+Substituting the reduced ``inner loop scope`` value of ``2n`` the ``outer loop scope`` is evaluated as ``n * (1 + 2n + 1) = n * (2n + 2) = 2n^2 + 2n``. 
+
+At the outermost ``algorithm scope``:
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+
+    function nested_loops(n):
+      # algorithm scope
+
+      outer_count = 0 # O(1)
+      inner_count = 0 # O(1)
+
+      repeat from 0 to n times: # outer loop reduced to 2n^2 + 2n
+
+The algorithm itself is evaluated as ``2n^2 + 2n + 1 + 1 = 2n^2 + 2n + 2``. If we factor out the common coefficient of ``2`` we can simplify this equation as ``2 * (n^2 + n + 1)``. 
+
+Cancelling Lower Order Terms
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. index:: polynomial function
+
+We have already learned about cancelling negligible coefficients and constants which left us with ``n^2 + n``. This is known as a second order polynomial function. We refer to it as `second order` because the highest power ``n`` is raised to is ``2``. 
+
+A quadratic function is just a name for second order polynomials. We can see how each degree of nesting loops corresponds to the order of the polynomial. Generally speaking we classify algorithms running in polynomial time as ``O(n^c)`` where ``c`` is the highest order. 
+
+Earlier we mentioned that `lower order terms` can also be cancelled. The justification for this is similar to that of cancelling coefficients and constants. Take ``n^2 + n`` for example. If both are taken at a value of ``n`` approaching infinity which will have a greater effect on growth rate? The highest order term will always **dominate** the growth rate relative to lower order terms. 
+
+We can safely cancel all but the highest order term leaving us with ``n^2``. In Big-O Notation we arrive at the classification ``O(n^2)``.
+
+.. 
+``O(log(n))``: Logarithmic Time
+-------------------------------
+
+.. todo:: log n is difficult to define outside the context of binary search. i think it is better suited to be introduced graphically here but formally defined in the next BT/BST chapter.
+
+Comparing Big-O Values
+======================
+
+Now that we have covered some common Big-O Values let's take another look at our graph:
+
+.. todo:: same graph of common Big-O Values
+
+We can see that when ordered from most to least performant we get the following order:
+
+#. ``O(1)``: constant time
+#. ``O(n)``: linear time
+#. ``O(log(n))``: logarithmic time
+#. ``O(n^2)``: quadratic time
+#. ``O(n^c)``: polynomial time
+
+We will cover ``O(log(n))`` in the context of binary searches covered in the next chapter. For now keep this order in mind as a quick way of comparing the classifications of algorithms and ruling out less performant candidates. 
+
+
+Check Your Understanding
+========================
