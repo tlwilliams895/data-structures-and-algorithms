@@ -345,22 +345,34 @@ If we factor out the common coefficient of ``2`` we can simplify this equation a
   
   ``2 * (n^2 + n + 1)``. 
 
-Cancelling Lower Order Terms
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. index:: polynomial function
-
 We have already learned about cancelling negligible coefficients and constants which leaves us with 
 
   ``n^2 + n``
 
-This is known as a second order polynomial function. We refer to it as `second order` because the highest power ``n`` is raised to is ``2``. 
+But why do we drop the ``n`` term to arrive at the Big-O Notation ``O(n^2)``?
+
+Cancel Rule: Lower Order Terms
+------------------------------
+
+.. index:: polynomial function
+
+Our algorithm reduction of ``n^2 + n`` is known as a second order polynomial, or quadratic function. We refer to it as `second order` because the highest power ``n`` is raised to is ``2``. 
 
 .. index:: polynomial time
 
-A quadratic function is just a name for second order polynomials. We can see how each degree of nesting loops corresponds to the order of the polynomial. Generally speaking we classify algorithms running in **polynomial time** as ``O(n^c)`` where ``c`` is the highest order. 
+We can see how each degree of nesting loops corresponds to the order of the polynomial. For example:
 
-Earlier we mentioned that `lower order terms` can also be cancelled. The justification for this is similar to that of cancelling coefficients and constants. Take ``n^2 + n`` for example. If both are taken at increasing values of ``n`` approaching infinity which will have a `greater effect` on growth rate? The highest order term will always **dominate** the growth rate relative to lower order terms. 
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+
+    repeat from 0 to n:
+      repeat from 0 to n:
+        repeat from 0 to n:
+
+This algorithm contains 3 degrees of nesting loops and would be reduced to a third order polynomial, ``n^3``. Generally speaking we classify algorithms running in **polynomial time** as ``O(n^c)`` where ``c`` is the highest order, or number of degrees of nested loops. 
+
+Earlier we mentioned that `lower order terms in a polynomial` can also be cancelled. The justification for this is similar to that of cancelling coefficients and constants. Take ``n^2 + n`` for example. If both are taken at increasing values of ``n`` approaching infinity which will have a `greater effect` on growth rate? The highest order term will always **dominate** the growth rate relative to lower order terms. 
 
 For this reason we can safely **cancel all but the highest order term** leaving us with ``n^2``. In Big-O Notation we arrive at the classification ``O(n^2)``.
 
@@ -380,13 +392,12 @@ Now that we have covered some common Big-O Values let's take another look at our
 We can see that when ordered from most to least performant we get the following order:
 
 #. ``O(1)``: constant time
-#. ``O(n)``: linear time
 #. ``O(log(n))``: logarithmic time
+#. ``O(n)``: linear time
 #. ``O(n^2)``: quadratic time
 #. ``O(n^c)``: polynomial time
 
-We will cover ``O(log(n))`` in the context of binary searches covered in the next chapter. For now keep this order in mind as a quick way of comparing the classifications of algorithms and ruling out less performant candidates. 
-
+We will explore ``O(log(n))`` in more detail within the context of binary searches. For now keep this order in mind as a quick way of comparing the classifications of algorithms and ruling out less performant candidates. 
 
 Check Your Understanding
 ========================
