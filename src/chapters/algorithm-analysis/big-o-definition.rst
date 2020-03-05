@@ -13,9 +13,9 @@ We went on to discuss Big-O Values, of the form ``O(time_complexity(n))``, as th
 .. index:: big-o
 .. index:: growth rate
 
-Speaking more rigorously, Big-O is a notation for describing the **growth rate** of a time complexity function as its input size is increased towards infinity until reaching its asymptotic upper bound. The time complexity function serves as an approximate model for the behavior of the actual algorithm classified by it. 
+Speaking more rigorously, Big-O is a notation for describing the **growth rate** of a time complexity function as its input size is increased towards infinity. For non-linear Big-O Values they will grow until reaching their asymptotic upper bound.
 
-In mathematical terms it is used to describe an algorithm as a function, ``f(n)``, which will never grow faster than at the upper bound its representative complexity function, ``g(n)``.
+In mathematical terms it is used to describe an algorithm as a function, ``f(n)``, which will never grow faster than at the upper bound its representative complexity function, ``g(n)``. The complexity function serves as an approximate model for the behavior of the algorithm classified by it. 
 
 .. 
   IDEA: how to fit in that these big-o values are like surrogates/proxies used to model an algorithm
@@ -28,7 +28,7 @@ In mathematical terms it is used to describe an algorithm as a function, ``f(n)`
       
 That is to say ``f(n) < O(g(n))`` with respect to their growth rates. The use of ``<`` here is not mathematically correct but is "close enough" to provide a more relatable understanding of the definition.
 
-There is a lot to unpack here. And if your head is spinning don't worry. In this section we will dissect the confusing parts of the definition and introduce the three elementary Big-O Values. This will prepare you for the more practical section to follow where you will learn the arithmetic used to calculate the Big-O of steps and algorithms along with some other common Big-O Values.
+There is a lot to unpack here. And if your head is spinning don't worry. In this section we will dissect the confusing parts of the definition and introduce two elementary Big-O Values.
 
 Time Complexity
 ===============
@@ -120,76 +120,9 @@ Those that reach their vertical asymptote sooner are said to be less performant.
 
 .. admonition:: Plain English
 
-  Algorithms classified by Big-O Values that take more operations to complete are less performant than those that take less operations to complete. The limit of a less performant algorithm will be exhibited at a smaller input size than a more performant one that can tolerate larger inputs before reaching its upper bound.
+  Algorithms classified by Big-O Values that take more operations to complete are less performant than those that take less operations to complete. The limit of a less performant algorithm will be exhibited at a smaller input size than one that can tolerate a larger input before reaching its upper bound.
 
-Knowing the growth rate of a Big-O Value we can approximate the behavior of a real algorithm classified by it. We can say that the actual algorithm will grow at some rate less than that of its representative Big-O since the latter has a known upper bound taken at its theoretical limit.
-
-Once candidate algorithms are classified in Big-O Notation we can quickly, visually, rule each Big-O whose behavior is less favorable relative to another. By process of elimination we can arrive at the optimal choice to solve the given problem.
-
-However, recall that Big-O Notation is generic by design. This means that once we internalize the upper bound growth rates of the most common Big-O Values we do not have to plot them against each other every time. Once the candidates have been classified using Big-O Notation we can determine the best choice conceptually rather than graphically.
-
-Below is a graph of the common Big-O Values you are likely to encounter. We will cover how each Value relates in a practical sense to an algorithm in the coming section. For now just consider how the complexity function of ``n`` controls the limiting behavior of these Big-O Values.
-
-.. todo:: preview of all the common values on a graph (operations vs input size). something like this https://s14-eu5.startpage.com/cgi-bin/serveimage?url=https%3A%2F%2Fwww.cdn.geeksforgeeks.org%2Fwp-content%2Fuploads%2Fmypic.png&sp=b82f0f2b0994a01b2ddadf6679f37c21&anticache=340636
-
-
-The Elementary Big-O Values
-===========================
-
-From the graph above you likely noticed that two linear Big-O Values, ``O(1)`` and ``O(n)``. Before getting into more complex Values let's learn the basics by exploring these elementary notations in the context of individual steps. Later we will learn how to use Big-O arithmetic to combine and reduce the steps of an algorithm to determine its Big-O Value. 
-
-.. admonition:: Tip
-
-  Remember that the Big-O of an algorithm is made up of the Big-O `of the steps within it`. 
-
-.. index:: pseudocode
-
-When defining or classifying using a Big-O Value it is common to write **pseudocode** to represent the programmatic concepts related to it. Pseudocode is a way of writing code at a high level that is a mixture of plain English and generic syntax that is common to most programming languages. It allows us to describe programs and statements, such as the steps of an algorithm, while remaining agnostic to any specific programming language. Pseudocode is a great way of quickly hashing out and discussing a program before implementing it using a real programming language. 
-
-.. index:: O(1)
-
-``O(1)``: Constant Time
------------------------
-
-A Big-O of ``1`` means the time complexity is **independent of the size of the input ``n``**. No matter how large the input size is the growth rate will always remain constant. In other words its growth rate is a fixed value represented graphically as a horizontal line. 
-
-- A step classified as of ``O(1)`` means that its operation runs in constant time.
-- By extension an algorithm classified as ``O(1)`` means the execution of its steps will run constant time. 
-
-.. admonition:: Pseudocode
-
-  .. sourcecode:: python
-
-    # a simple print statement
-    print "I am a simple print statement"
-
-    # indexing into an element of an Array of size n
-    second_element = array[1]
-
-    # finding the smallest value of an Array of n numbers that are sorted in ascending order
-    smallest_element = sorted_array[0]
-
-``O(n)``: Linear Time
----------------------
-
-A Big-O of ``n`` means the time complexity **is directly proportional to the size of the input** ``n``. As the input size is increased it will grow at a consistent pace. It is represented graphically as a positively sloped line. 
-
-It is associated programmatically with a finite loop, such as a ``for`` loop, that repeats according to the size of ``n``.
-
-- An ``O(n)`` step is a loop that will iterate ``n`` number of times
-- An algorithm classified as ``O(n)`` will take ``n`` many operations to complete its steps
-
-.. admonition:: Pseudocode
-
-  .. sourcecode:: python
-
-    # a loop iterating n number of times
-    repeat from 0 to n:
-      # some sub step(s)
-
-    # a loop iterating over each element in an Array of size n
-    for element in array:
-      # some sub step(s)
+Knowing the growth rate of a Big-O Value we can approximate the behavior of a real algorithm classified by it. We can say that the **actual algorithm will grow at some rate less than that of its classification** since the latter has a known upper bound taken at its theoretical limit.
 
 Check Your Understanding
 ========================
@@ -205,7 +138,7 @@ Check Your Understanding
 
 .. admonition:: Question
 
-  The upper bound input value of a function is the limit where its curve becomes vertical
+  The limit of a complexity function is the point where its curve becomes vertical
 
   - true
   - false
@@ -214,7 +147,7 @@ Check Your Understanding
 
 .. admonition:: Question
 
-  The Big-O of an algorithm is the upper bound representation of its behavior
+  The Big-O of an algorithm is the upper bound classification of its behavior
 
   - true
   - false
@@ -223,7 +156,7 @@ Check Your Understanding
 
 .. admonition:: Question
 
-  An algorithm's actual growth rate at increasing input sizes will always be less than the upper bound of the Big-O Value that classifies it
+  An algorithm's actual growth rate at will always be less than the upper bound of the Big-O Value that classifies it
 
   - true
   - false
