@@ -1,219 +1,451 @@
+========================================
 Analyzing Algorithms With Big-O Notation
 ========================================
 
-Intro
------
+Now that we have a conceptual foundation of Big-O Notation let's explore it from a practical perspective. Analysis with Big-O is about **comparing the classifications** of algorithms---not the algorithms themselves. Think of using Big-O as a way of performing a surface-level analysis of how an algorithm will behave based on the `class of algorithms` it belongs to.
 
-Analyzing algorithms with Big-O Notation comes down to basic arithmetic. An algorithm is just a series of steps, or operations, performed by a computer. Every step itself can be classified by Big-O notation.
+Why do we look at the classifications rather than the algorithms themselves? Simply put, because it's the fastest way of comparing performance. We perform analysis to determine what is worth pursuing. If at a high level one algorithm has a Big-O that is more performant than another then we can immediately rule out the poorer candidate. We do not need to waste time implementing each algorithm to compare them in great detail. The classifications define their upper bound potential which, by definition, can never be exceeded.
 
-.. sourcecode::
+In this section we will learn about the most common Big-O Values and how each of their relative performance to one another. Along the way we will cover how to evaluate the Big-O Values of steps and the algorithm's they belong to. 
 
-   print "Hello World!"
+Before we begin let's take a look at a visual representation of the Big-O Values you are likely to encounter. We will soon explore each of these in more detail. For now use this graph to form a mental model of each of their upper bound behaviors.
 
-The above pseudocode has one operation. The computer must print the string "Hello World!" to the console. The Big-O notation of this one step would be ``O(1)``.
+.. todo:: preview of the common values on a graph (operations vs input size). something like this https://s14-eu5.startpage.com/cgi-bin/serveimage?url=https%3A%2F%2Fwww.cdn.geeksforgeeks.org%2Fwp-content%2Fuploads%2Fmypic.png&sp=b82f0f2b0994a01b2ddadf6679f37c21&anticache=340636
 
-What about loops? We don't necessarily know how many items may be in a collection of objects.
+Linear Big-O Values
+===================
 
-.. sourcecode::
+.. todo:: consider replacing all instances of "Big-O Value" with "Big-O Classification". it provides the same arbitrary distinction from Big-O Notation but may be better at reinforcing the idea that we are dealing with classifications not the algorithms themselves
 
-   for student in students
+From the graph above you likely noticed the two linear Big-O Values, ``O(1)`` and ``O(n)``. Before getting into the more complex non-linear Values let's explore these basic notations first.
 
-A pretty common for loop, that just loops through all the individual students. The computer must do something for every item in the collection. The Big-O notation of this one step would be ``O(n)``.
+.. admonition:: Tip
 
-``n`` represents the number of individual items in the collection ``students``.
+  Remember that the Big-O of an algorithm is evaluated using the Big-O `of the steps within it`. 
 
-Every single line of code can have Big-O notation to represent it's runtime complexity. In the next section we will see how we can combine various Big-O Notation of discrete steps to find the overall Big-O Notation for an entire algorithm.
+.. index:: pseudocode
 
-Big-O Arithmetic
-----------------
+When discussing Big-O it is common to write **pseudocode** to represent the concepts associated with an algorithm. Pseudocode is an abstract way of writing code that is a mixture of plain English and generic syntax common to most programming languages. It allows us to describe programs and statements, such as the steps of an algorithm, while remaining agnostic to any specific programming language.
 
-Figuring out the Big-O notation for a series of steps simply takes some basic arithmetic. Additive arithmetic to be precise. We predominately use addition, and multiplication. We don't have a need for subtraction, or division because we are always adding steps together.
+.. index:: O(1)
 
-We do reduce our Big-O Notation to  more easily communicate ideas with others, but the topic of cancellation will come later in this section. Right now we are focused on adding individual steps together to calculate the overall Big-O Notation for an algorithm.
+``O(1)``: Constant Time
+-----------------------
 
-Sum
-^^^
+A Big-O of ``1`` means the time complexity is **independent of the size of the input ``n``**. No matter how large the input size is the growth rate will always remain constant. In other words its growth rate is constant and represented graphically as a horizontal line. 
 
-.. sourcecode::
+- A step classified as of ``O(1)`` means it is an operation that runs in constant time.
+- By extension an algorithm classified as ``O(1)`` means the execution of its steps will run constant time. 
 
-   print "Hello World!"
-   print "Goodnight World!"
+.. admonition:: Pseudocode
 
-The above pseudocode has two operations. The computer must print the string "Hello World!" and then the computer must print the string "Goodnight World!".
+  .. sourcecode:: python
 
-- ``print "Hello World!"`` is ``O(1)``
-- ``print "Goodnight World!"`` is ``O(1)``
+    # a simple print statement
+    print "I am a simple print statement"
 
-So we could say the Big-O notation for both of these steps together would be ``O(1 + 1)`` or ``O(2)``.
+    # indexing into an element of a list of size n
+    second_element = list_of_size_n[1]
 
-.. admonition:: note
+    # finding the smallest value of a list of n numbers that are sorted in ascending order
+    smallest_element = sorted_list_of_size_n[0]
 
-   Later in this section we will discuss the difference between ``O(1)`` and ``O(2)``.
+    # comparing two elements in a list of size n
+    if list_of_size_n[0] equals list_of_size_n[5]:
+      # do some sub-step(s)
 
-Let's consider when a step of an algorithm may have sub-steps.
+.. index:: O(n)
 
-.. sourcecode::
+``O(n)``: Linear Time
+---------------------
 
-   if status is true
-       print("True")
+A Big-O of ``n`` means the time complexity **is directly proportional to the size of the input** ``n``. As the input size is increased it will grow at a constant rate. It is represented graphically as a positively sloped line. 
 
-Again this collection of code has two discrete steps:
+It is associated programmatically with a finite loop such as a ``for`` loop.
 
-- ``if status is true`` is ``O(1)``
-- ``print("True")`` is ``O(1)``
+- An ``O(n)`` step is a loop that will repeat its sub-step operations **at most** ``n`` number of times
+- An algorithm classified as ``O(n)`` will take **at most** ``n`` number of operations to complete its steps
 
-So again we get a grand total of ``O(2)``.
+.. admonition:: Pseudocode
 
-Multiplication by Constant
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+  .. sourcecode:: python
 
-Revisiting our for loop from the intro we can learn about Big-O multiplication.
+    # a loop iterating n number of times
+    # notice that n can be a number itself rather than a structure of size n
+    repeat from 0 to n:
+      # do some sub-step(s)
 
-.. sourcecode::
+    # a loop iterating over each element in a list of size n
+    for each element in list_of_size_n:
+      # do some sub-step(s)
 
-   for student in students
-       print student.first_name
+    # a while loop that eventually reaches a stop condition is also applicable
+    count = 0
 
-Now our for loop has a substep!
+    while count < n:
+      # do some sub-step(s)
+      # one sub-step must increment the counter to ensure the loop will eventually end
+      count++ 
 
-- ``for student in students`` is ``O(n)``
-- ``print student.first_name`` is ``O(1)``
+Why do we say that ``O(n)`` will take `at most` ``n`` number of operations? Because this classification tells us the `upper bound` of what is possible but the actual number of operations will depend on how the algorithm is used in practice. 
 
-We need to use some basic arithmetic to combine these into ``O(n(1))`` which is to say for every student in ``n`` they each have one operation: ``print student.first_name``.
+For example, if we are searching for a value in a list of size ``n`` we would perform a comparison operation `up to` ``n`` times. We may find the match in the beginning (1 iteration) or at the end (``n`` iterations) depending on where it is located. We can see that the practical number of iterations depends on `the goal of the algorithm and its steps`, along with other factors covered later in this book.
 
-What if we loop through the same collection twice?
+Evaluating the Big-O of an Algorithm
+====================================
 
-.. sourcecode::
+As discussed previously time complexity is referenced in units of operations. Some operations take a constant amount of time while others are dependent on the size of the input ``n``. Algorithms are comprised of a series of steps, each of which can be thought of as an operation. Steps can also have sub-steps within them such as an operation taken within a loop.
 
-   for student in students
-       print student.first_name
-   for student in students
-       print student.last_name
+Our end goal is to `evaluate` the Big-O Value of an algorithm. But in order to do so we have to evaluate the Big-O of the steps and sub-steps `within` it. We group and evaluate steps according to their **scope**.
 
-In this case we know each for loop can be represented by ``O(n(1))`` and we simply need to add them together ``O(n(1) + n(1))`` which is: ``O(2n(1))``.
+In the pseudocode below we use indentation to visualize the scope of each step and any sub-step within it. 
 
-Product
-^^^^^^^
+.. admonition:: Pseudocode
 
-What happens when we nest a loop? We are no longer multiplying constants, but multiplying collections of unknown size.
+  .. sourcecode:: python
 
-.. sourcecode::
+    function algorithm(n):
+      # outermost scope, print and loop operations
 
-  for student in students
-     for grade in student.grades
+      print "let's learn how evaluation works!"
 
-- ``for student in students`` is ``O(n)``
-- ``for grade in student.grades`` is ``O(n)``
+      repeat from 0 to n:
+        # loop scope, nested print operations
+        
+        print "I am in the loop scope" # O(1)
 
-This results in some basics arithmetic like this: ``O(n * n)`` or also known as ``O(n^2)``.
+        print n 
 
-Figuring out the Big-O Notation for an algorithm can be simply done by figuring out the individual steps of an algorithm and then using some basic arithmetic to combine the individual steps!
+After evaluating this algorithm we classify it as ``O(n)``. But how did we arrive at this classification?
 
-Big-O Notation Cancellation
----------------------------
+.. worth including?
+  You can see that the relationship, in terms of scopes, becomes: 
+    algorithm > step > sub-step > ...sub-step(s)...
 
-.. TODO:: cancellation section here before the examples of each?
+When classifying an algorithm's Big-O we need to evaluate each scope within it as a group. We start from the innermost scope and reduce outwards to the final scope of the algorithm itself.
 
-Breaking Down Common Big O Notations
-------------------------------------
+.. admonition:: Fun Fact
 
-In the previous chapter we learned about a collection of commonly used Big O Notation (constant, n, n^2, log n). Let's look at the pseudocode to determine how these equations were derived.
+  We use an algorithm to evaluate and classify other algorithms!
 
-O(1) Example
-^^^^^^^^^^^^
+#. **count**: classify and **sum** the Big-O of each operation of the inner scope
+#. **reduce**: take the **product** of the sum of the inner scope with the Big-O of its outer operation
+#. repeat these steps for each scope in the algorithm
+#. **cancel**: as a final step we discard terms that have a negligible effect on the growth rate
 
-.. TODO:: introduce the idea of putting them into functions and being a little more in depth.
+The result written in Big-O Notation is the classification of the algorithm.
 
-.. sourcecode::
+.. todo:: an example that supports renaming "Big-O Value" to "Big-O Classification". "Big-O Value...not a value" may be confusing
 
-   function printMessage(message) {
-     print message
-   }
-   
-In the instance of printing some message to the console the action does not depend on the size of the data coming in. Only one operation is performed every single time this function is invoked. A very long message being passed into this function may take a few more milliseconds to display the message to the console, but the number of operations is always constant.
+.. admonition:: Note
 
-We would consider this function to be constant time represented in Big O Notation by: ``O(1)``.
+  Keep in mind that the use of `addition` and `multiplication` are used conceptually. You can not `actually` add or multiply a Big-O Value because it is just a notation not a value. We evaluate using the value inside the notation. For example, ``O(1)`` and ``O(n)`` are treated as the number ``1`` and variable ``n`` respectively.
 
+Sum Rule: Count Within a Scope
+------------------------------
 
-.. sourcecode::
+When evaluating operations in the same scope we classify each operation and add them together.
 
-   function printPersonalMessage(person, message) {
-     print "Welcome " + person + "!"
-     print message
-   }
+Let's begin with the innermost scope---the ``loop scope``. It contains two print operations, both of which run in constant time.
 
-This example has two operations. It prints two messages to the console. This is another representation of constant time.
+.. admonition:: Pseudocode
 
-The correct Big O Notation for this is: ``O(1)``.
+  .. sourcecode:: python
 
-You may be thinking the Big O Notation should be: ``O(2)`` because there are two operations being performed, and although you are correct about the number of operations being performed the usefullness of Big O Notation is to compare the performance of one algorithm to another algorithm. We are less concerned with individual operations unless those operations are dependant on a collection of data. So in this example we simply reduce the extra operations to the simplest notation. Which would be: ``O(1)``. After all ``O(1)`` represents constant time, and it doesn't matter how many individual steps there are, those steps will always execute in constant time.
+      repeat from 0 to n:
+        # loop scope, nested print operations
+        
+        print "I am in the loop scope" # O(1)
 
-O(n) Example
-^^^^^^^^^^^^
+        print n # O(1)
 
-.. sourcecode::
+The sum of the ``loop scope``, containing two ``O(1)`` operations, is evaluated as ``1 + 1 = 2``.
 
-   function sumNumbers(arr) {
-     sum = 0
-     for number in arr
-         sum += number
-     return sum
-   }
+Product Rule: Reducing a Scope
+------------------------------
 
-In this example we are calculating the sum of a collection of numbers. 
+A scope is reduced by taking the **product** of its sum and its outer operation. In other words we take the sum of the inner scope and multiply it by the operation it is contained in.
 
-In this function we must loop through each number in our collection and add that number to our sum variable. In essence we are performing an operation (adding a number to our sum variable) for every element in our collection. So the time it will take this function to run is dependant on the size of the data coming into the function.
+The loop operation may repeat up to the input size, ``n``, number of times so we say it runs in ``O(n)`` time.
 
-We would consider this function to be represented in Big O Notation by: ``O(n)`` which refers to the size (number of elements in the collection) of the incoming data.
+.. admonition:: Pseudocode
 
-.. sourcecode::
+  .. sourcecode:: python
 
-   function averageNumbers(arr) {
-     sum = 0
+      repeat from 0 to n: # O(n)
+        # loop scope, nested print operations
 
-     for number in arr
-         sum += number
-     
-     total = 0
-     
-     for number in arr
-         total += 1
-     
-     return sum / total
-   }
+        print "I am in the loop scope" # O(1)
+        print n # O(1)
 
-In this function we are calculating the average value of a collection of numbers. We loop through our collection first to find the sum, and then we loop through the collection again to figure out the length of the collection. Finally, we return the average by dividing the sum by the total number of elements in our collection.
+Using the ``loop scope`` sum of ``2`` we evaluate the product with the loop operation as ``2 * n = 2n``.
 
-The Big O Notation of this algorithm is: ``O(n)``.
+The ``outermost scope`` now contains the reduced loop operation, ``2n``, and a print operation, ``1``. 
 
-Similar to the example we saw in our first example we reduce the number of times we have to loop through the data, because it's only dependant on the size of the data.
+.. admonition:: Pseudocode
 
-Again you may argue that the actual equation should be: ``O(2n + 1)`` because we have to loop through the collection two times and we have 1 constant operation (sum / total), and in practicality you would be correct. But for the sake of comparison of various algorithms, the benefit comes in having a common language to refer to each algorithm. In this functions case it is only dependant on the size of the collection (regardless to how many times it loops through the data) which would be regarded as ``O(n)``.
+  .. sourcecode:: python
 
-We effectively took ``O(2n + 1)`` and cancelled the constant operations, and the number of times we looped through n leaving us with ``O(n)``. Again this is our way of saying this algorithm's runtime complexity is dependant on the size of the collection being passed into the function.
+    function algorithm(n):
+      # outermost scope, print and loop operations
 
-O(n^2) Example
-^^^^^^^^^^^^^^
+      print "let's learn how evaluation works!" # O(1)
 
+      repeat from 0 to n: # loop scope, reduced to 2n
 
-Worst Case?
------------
+We take the sum of these operations as they are both in the same scope.
 
-Bring back the first section definition highlighting worst case or upper bounds.
+At this point we may be tempted classify our algorithm as the final ``outermost scope`` sum of ``2n + 1``. But we saw the algorithm's actual classification is ``O(n)``. Why do we get rid of, or `cancel` the coefficient ``2`` and the constant term ``1``? 
 
-- What do we mean by worst case? 
-- What is best case? 
-- Why don't we use Big O notation for best case?
+Cancel Rule: Discarding Negligible Terms
+----------------------------------------
 
-.. TODO: Should Big O Operations be discussed here? or analyzing with big o notation?
+Recall that Big-O represents the theoretical upper bound of an algorithm's classification. We qualify this upper bound as theoretical because it is determined when approximating an input size ``n`` at a non-real value of infinity. 
 
-Concept Checks
---------------
+When we consider the behavior at this theoretical upper bound we recognize that the following can be discarded: 
 
-- what are the big o operators?
-- what is cancelling?
-- when is it appropriate to cancel?
-- what is the relationship of the a specific step in an algorithm, vs the overall algorithm big o?
-- why do you look for the highest order term? -- answer it's what has the biggest impact as the data (n) increases
-- what is a primitive operation?
-- analyzing section is the part to do the pseudocode of the constant, n, n^2, log n, etc
+- **constant terms**: any number that doesn't change
+- **coefficients**: any number that is multiplied with a variable
+- **lower order terms**: variables at a power less than the highest found in a polynomial 
+
+To avoid getting bogged down in the mathematical details of **asymptotic analysis** that supports cancellation let's think about constants and coefficients in a practical sense. We will defer the discussion on lower order terms until later in this section when they have a relevant context.
+
+If you multiply infinity by any number, no matter how large, what do you get? Infinity, because there is no concept of anything larger. If you add any number, no matter how large, to infinity what do you get? Infinity.
+
+Essentially there is no number that can be multiplied (coefficient) or added (constant term) to the factor of ``n`` that will have any effect on the growth rate. For this reason we consider coefficients and constants as `negligible` relative to the ``n`` term itself and can discard them.
+
+From our pseudocode example that was reduced to ``2n + 1`` we can see that ``2`` is a coefficient of ``n`` and ``1`` is a constant term, both can be cancelled. After cancelling we are left with ``n``. Writing this value in Big-O Notation we finally classify the algorithm as ``O(n)``.
+
+This example used linear Big-O Values to illustrate the process of evaluation simply. We will explore the common non-linear Big-O Values next. While they may appear more complex on the surface they are evaluated in the same methodical way---from the inside out using sums, products, and cancelling negligible terms.
+
+Non-Linear Big-O Values
+=======================
+
+Unlike the linear Big-O Values the non-linear classifications are bounded at varying input sizes that cause their performance to degrade rapidly. At their respective upper bounds the number of operations they take to process larger inputs becomes impractical.  
+
+``O(n^2)``: Quadratic Time
+--------------------------
+
+A Big-O of ``n^2`` means the time complexity is **quadratic with respect to the size of the input ``n``**. In other words the number of operations required increases with the square of ``n``. It is represented graphically as the positive half of a parabola, a U-shaped curve.
+
+.. index:: nested loops
+.. index:: recursive function
+
+In practice ``O(n^2)`` is related to two finite loops---one within the other. This is easily identified as as a pair of **nested loops** that each may iterate `at most` ``n`` times each. 
+
+Recall that a loop can be treated synonymously with a **recursive function call**. ``O(n^2)`` can indicate a nested recursive call within a traditional finite loop.  
+
+- A step classified as ``O(n^2)`` is a reduction of loop operation within another loop operation.
+- An algorithm classified as ``O(n^2)`` means the execution of its steps will take `at most` a number of operations equal to the square of the input size.
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+
+    # a nested loop step driven by a numeric input of size n
+    repeat from 0 to n times:
+      # some other sub-step(s)
+      repeat from 0 to n times:
+        # some sub-step(s)
+
+    # an algorithm with recursion in a loop
+    function recursing(list_of_size_n):
+      for each element in list_of_size_n:
+        # some other sub-step(s)
+
+        # the breakout condition to ensure finite recursion
+        if a breakout condition is not met:
+          # where ...n represents some recursive usage of n
+          return recursing(...n)
+
+Let's consider an example to see how an algorithm is evaluated to a classification ``O(n^2)``:
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+
+    function nested_loops(n):
+      # algorithm scope
+
+      outer_count = 0
+      inner_count = 0
+
+      repeat from 0 to n times:
+        # outer loop scope
+
+        print outer_count
+        repeat from 0 to n times:
+          # inner loop scope
+
+          print inner_count
+          inner_count++
+
+        outer_count++
+
+Begin at the innermost scope:
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+
+        repeat from 0 to n times: # O(n)
+          # inner loop scope
+
+          print inner_count # O(1)
+          inner_count++ # O(1)
+
+``inner loop scope`` is evaluated as ``n * (1 + 1) = 2n``
+
+The ``outer loop scope`` is then considered:
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+
+      repeat from 0 to n times: # O(n)
+        # outer loop scope
+
+        print outer_count # O(1)
+        
+        repeat from 0 to n times: # inner loop reduced to 2n
+
+        outer_count++ # O(1)
+
+Substituting the reduced ``inner loop scope`` value of ``2n`` the ``outer loop scope`` is evaluated as ``n * (1 + 2n + 1) = n * (2n + 2) = 2n^2 + 2n``. 
+
+At the outermost ``algorithm scope``:
+
+.. admonition:: Pseudocode
+
+  .. sourcecode:: python
+
+    function nested_loops(n):
+      # algorithm scope
+
+      outer_count = 0 # O(1)
+      inner_count = 0 # O(1)
+
+      repeat from 0 to n times: # outer loop reduced to 2n^2 + 2n
+
+The algorithm itself is evaluated as ``2n^2 + 2n + 1 + 1 = 2n^2 + 2n + 2``. If we factor out the common coefficient of ``2`` we can simplify this equation as ``2 * (n^2 + n + 1)``. 
+
+Cancelling Lower Order Terms
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. index:: polynomial function
+
+We have already learned about cancelling negligible coefficients and constants which left us with ``n^2 + n``. This is known as a second order polynomial function. We refer to it as `second order` because the highest power ``n`` is raised to is ``2``. 
+
+A quadratic function is just a name for second order polynomials. We can see how each degree of nesting loops corresponds to the order of the polynomial. Generally speaking we classify algorithms running in polynomial time as ``O(n^c)`` where ``c`` is the highest order. 
+
+Earlier we mentioned that `lower order terms` can also be cancelled. The justification for this is similar to that of cancelling coefficients and constants. Take ``n^2 + n`` for example. If both are taken at a value of ``n`` approaching infinity which will have a greater effect on growth rate? The highest order term will always **dominate** the growth rate relative to lower order terms. 
+
+We can safely cancel all but the highest order term leaving us with ``n^2``. In Big-O Notation we arrive at the classification ``O(n^2)``.
+
+
+``O(log(n))``: Logarithmic Time
+-------------------------------
+
+.. todo:: log n is difficult to define outside the context of binary search. i think it is better suited to be introduced graphically here but formally defined in the next BT/BST chapter.
+
+Comparing Big-O Values
+======================
+
+Now that we have covered some common Big-O Values let's take another look at our graph:
+
+.. todo:: same graph of common Big-O Values
+
+We can see that when ordered from most to least performant we get the following order:
+
+#. ``O(1)``: constant time
+#. ``O(n)``: linear time
+#. ``O(log(n))``: logarithmic time
+#. ``O(n^2)``: quadratic time
+#. ``O(n^c)``: polynomial time
+
+We will cover ``O(log(n))`` in the context of binary searches covered in the next chapter. For now keep this order in mind as a quick way of comparing the classifications of algorithms and ruling out less performant candidates. 
+
+
+Check Your Understanding
+========================
+
+.. admonition:: Question
+
+  Classify the following algorithm in Big-O Notation
+
+  .. admonition:: Pseudocode
+
+    .. sourcecode:: python
+
+      function is_too_big(list_of_size_n, maximum_size):
+        if list_of_size_n is smaller or equal to maximum_size:
+          return true
+        return false
+
+  #. ``O(1)``
+  #. ``O(n)``
+  #. ``O(n^2)``
+  #. ``O(log(n))``
+
+.. admonition:: Question
+
+  Classify the following algorithm in Big-O Notation
+
+  .. admonition:: Pseudocode
+
+    .. sourcecode:: python
+
+      function has_the_number(numbers, target_number):
+        for number in numbers:
+          if number is equal to target_number:
+            return true
+        return false
+
+  #. ``O(1)``
+  #. ``O(n)``
+  #. ``O(n^2)``
+  #. ``O(log(n))``
+
+.. admonition:: Question
+
+  Classify the following algorithm in Big-O Notation
+
+  .. admonition:: Pseudocode
+
+    .. sourcecode:: python
+
+      function is_in_sublist(lists, target):
+
+        # lists is a two dimensional list (a list containing list elements)
+        for each list in lists:
+          for each element in sublist:
+            if element is equal to target:
+              return true
+        return false
+
+  #. ``O(1)``
+  #. ``O(n)``
+  #. ``O(n^2)``
+  #. ``O(log(n))``
+
+.. admonition:: Question
+
+  Classify the following algorithm in Big-O Notation
+
+  .. admonition:: Pseudocode
+
+    .. sourcecode:: python
+
+      function is_in_sublist(lists, target):
+
+        # lists is a two dimensional list (a list containing list elements)
+        for each list in lists:
+          for each element in sublist:
+            if element is equal to target:
+              return true
+        return false
+
+  #. ``O(1)``
+  #. ``O(n)``
+  #. ``O(n^2)``
+  #. ``O(log(n))``
