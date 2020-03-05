@@ -157,10 +157,10 @@ Concept Checks
 
   What is true about a Big-O Value?
 
-  - [ ] it is a mechanism used to calculate the time complexity of an algorithm
-  - [ ] it is a complexity function in terms of an input
-  - [ ] it is an analogous term for Big-O Notation
-  - [ ] it can be used to describe an individual step or algorithm as a whole
+  #. it is a mechanism used to calculate the time complexity of an algorithm
+  #. it is a complexity function in terms of an input
+  #. it is an analogous term for Big-O Notation
+  #. it can be used to describe an individual step or algorithm as a whole
 
 .. 2, 4
 
@@ -169,11 +169,9 @@ Concept Checks
 
   In what ways is understanding the Big-O of an algorithm valuable?
 
-  - [ ] it is a standardized way of comparing the performance of candidate algorithms
-
-  - [ ] it can help in understanding the budget required to execute an algorithm
-
-  - [ ] it can provide an understanding of an algorithm's practical capability from its theoretical limitation
+  #. it is a standardized way of comparing the performance of candidate algorithms
+  #. it can help in understanding the budget required to execute an algorithm
+  #. it can provide an understanding of an algorithm's practical capability from its theoretical limitation
 
 .. 1, 2, 3
   
