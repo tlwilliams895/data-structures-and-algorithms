@@ -159,7 +159,9 @@ Let's begin with the innermost scope---the ``loop scope``. It contains two print
 
         print n # O(1)
 
-The sum of the ``loop scope``, containing two ``O(1)`` operations, is evaluated as ``1 + 1 = 2``.
+The sum of the ``loop scope``, containing two ``O(1)`` operations, is evaluated as 
+
+  ``1 + 1 = 2``.
 
 Product Rule: Reducing a Scope
 ------------------------------
@@ -178,7 +180,9 @@ The loop operation may repeat up to the input size, ``n``, number of times so we
         print "I am in the loop scope" # O(1)
         print n # O(1)
 
-Using the ``loop scope`` sum of ``2`` we evaluate the product with the loop operation as ``2 * n = 2n``.
+Using the ``loop scope`` sum of ``2`` we evaluate the product with the loop operation as
+
+  ``2 * n = 2n``
 
 The ``outermost scope`` now contains the reduced loop operation, ``2n``, and a print operation, ``1``. 
 
@@ -195,7 +199,9 @@ The ``outermost scope`` now contains the reduced loop operation, ``2n``, and a p
 
 We take the sum of these operations as they are both in the same scope.
 
-At this point we may be tempted classify our algorithm as the final ``outermost scope`` sum of ``2n + 1``. But we saw the algorithm's actual classification is ``O(n)``. Why do we get rid of, or `cancel` the coefficient ``2`` and the constant term ``1``? 
+  ``2n + 1``
+
+At this point we may be tempted classify our algorithm using this sum as ``O(2n + 1)``. But we saw the algorithm's actual classification is ``O(n)``. Why do we get rid of, or `cancel` the coefficient ``2`` and the constant term ``1``? 
 
 Cancel Rule: Discarding Negligible Terms
 ----------------------------------------
@@ -226,16 +232,16 @@ Unlike the linear Big-O Values the non-linear classifications are bounded at var
 ``O(n^2)``: Quadratic Time
 --------------------------
 
-A Big-O of ``n^2`` means the time complexity is **quadratic with respect to the size of the input ``n``**. In other words the number of operations required increases with the square of ``n``. It is represented graphically as the positive half of a parabola, a U-shaped curve.
+A Big-O of ``n^2`` means the time complexity is **quadratic with respect to the size of the input** ``n``. In other words the number of operations required increases with the square of ``n``. It is represented graphically as the positive half of a parabola, a U-shaped curve.
 
 .. index:: nested loops
 .. index:: recursive function
 
-In practice ``O(n^2)`` is related to two finite loops---one within the other. This is easily identified as as a pair of **nested loops** that each may iterate `at most` ``n`` times each. 
+In practice ``O(n^2)`` is related to two finite loops---one within the other. This is easily identified as as a pair of **nested loops** that each may iterate `at most` ``n`` times. 
 
-Recall that a loop can be treated synonymously with a **recursive function call**. ``O(n^2)`` can indicate a nested recursive call within a traditional finite loop.  
+Recall that a loop can be treated synonymously with a **recursive function call**. ``O(n^2)`` can indicate a recursive call nested within a traditional finite loop.  
 
-- A step classified as ``O(n^2)`` is a reduction of loop operation within another loop operation.
+- A step classified as ``O(n^2)`` is a reduction of a loop operation within another loop operation.
 - An algorithm classified as ``O(n^2)`` means the execution of its steps will take `at most` a number of operations equal to the square of the input size.
 
 .. admonition:: Pseudocode
@@ -294,7 +300,9 @@ Begin at the innermost scope:
           print inner_count # O(1)
           inner_count++ # O(1)
 
-``inner loop scope`` is evaluated as ``n * (1 + 1) = 2n``
+``inner loop scope`` is evaluated as
+
+  ``n * (1 + 1) = 2n``
 
 The ``outer loop scope`` is then considered:
 
@@ -311,7 +319,9 @@ The ``outer loop scope`` is then considered:
 
         outer_count++ # O(1)
 
-Substituting the reduced ``inner loop scope`` value of ``2n`` the ``outer loop scope`` is evaluated as ``n * (1 + 2n + 1) = n * (2n + 2) = 2n^2 + 2n``. 
+Substituting the reduced ``inner loop scope`` value of ``2n`` the ``outer loop scope`` is evaluated as 
+  
+  ``n * (1 + 2n + 1) = n * (2n + 2) = 2n^2 + 2n``. 
 
 At the outermost ``algorithm scope``:
 
@@ -327,20 +337,32 @@ At the outermost ``algorithm scope``:
 
       repeat from 0 to n times: # outer loop reduced to 2n^2 + 2n
 
-The algorithm itself is evaluated as ``2n^2 + 2n + 1 + 1 = 2n^2 + 2n + 2``. If we factor out the common coefficient of ``2`` we can simplify this equation as ``2 * (n^2 + n + 1)``. 
+The algorithm itself is evaluated as
+  
+  ``2n^2 + 2n + 1 + 1 = 2n^2 + 2n + 2``.
+
+If we factor out the common coefficient of ``2`` we can simplify this equation as
+  
+  ``2 * (n^2 + n + 1)``. 
 
 Cancelling Lower Order Terms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. index:: polynomial function
 
-We have already learned about cancelling negligible coefficients and constants which left us with ``n^2 + n``. This is known as a second order polynomial function. We refer to it as `second order` because the highest power ``n`` is raised to is ``2``. 
+We have already learned about cancelling negligible coefficients and constants which leaves us with 
 
-A quadratic function is just a name for second order polynomials. We can see how each degree of nesting loops corresponds to the order of the polynomial. Generally speaking we classify algorithms running in polynomial time as ``O(n^c)`` where ``c`` is the highest order. 
+  ``n^2 + n``
 
-Earlier we mentioned that `lower order terms` can also be cancelled. The justification for this is similar to that of cancelling coefficients and constants. Take ``n^2 + n`` for example. If both are taken at a value of ``n`` approaching infinity which will have a greater effect on growth rate? The highest order term will always **dominate** the growth rate relative to lower order terms. 
+This is known as a second order polynomial function. We refer to it as `second order` because the highest power ``n`` is raised to is ``2``. 
 
-We can safely cancel all but the highest order term leaving us with ``n^2``. In Big-O Notation we arrive at the classification ``O(n^2)``.
+.. index:: polynomial time
+
+A quadratic function is just a name for second order polynomials. We can see how each degree of nesting loops corresponds to the order of the polynomial. Generally speaking we classify algorithms running in **polynomial time** as ``O(n^c)`` where ``c`` is the highest order. 
+
+Earlier we mentioned that `lower order terms` can also be cancelled. The justification for this is similar to that of cancelling coefficients and constants. Take ``n^2 + n`` for example. If both are taken at increasing values of ``n`` approaching infinity which will have a `greater effect` on growth rate? The highest order term will always **dominate** the growth rate relative to lower order terms. 
+
+For this reason we can safely **cancel all but the highest order term** leaving us with ``n^2``. In Big-O Notation we arrive at the classification ``O(n^2)``.
 
 
 ``O(log(n))``: Logarithmic Time
