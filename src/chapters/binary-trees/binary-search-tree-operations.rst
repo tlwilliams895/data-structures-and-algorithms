@@ -9,3 +9,8 @@ Binary Search Tree Operations
     - insert
     - remove
     - traverse
+
+.. relevant notes from paul
+- Binary Search Tree Search (how is it done)
+- Binary Search Tree operations (insert, remove, traverse)
+- Big O of binary search tree operations, and binary search
