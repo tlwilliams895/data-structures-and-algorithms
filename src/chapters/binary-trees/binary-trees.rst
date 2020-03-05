@@ -47,10 +47,6 @@ sorting, or searching. It is very rare you would need to code a Binary Tree
 yourself, but knowing how they work is benefical in understanding how certain
 sorting, or searching algorithms perform.
 
-
-Binary Tree
------------
-
 Root Node
 ^^^^^^^^^
 
