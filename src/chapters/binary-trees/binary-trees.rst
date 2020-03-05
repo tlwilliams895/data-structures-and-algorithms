@@ -3,10 +3,10 @@ Binary Trees
 ============
 
 .. relevant objectives
-- Understand the conceptual structure of a binary tree
+  - Understand the conceptual structure of a binary tree
 
 .. relevant notes from paul
-- Understand the conceptual structure of a binary tree
+  - Understand the conceptual structure of a binary tree
 
 Binary Tree
 -----------
@@ -19,6 +19,7 @@ structure a Binary Search Tree is based on the Binary Tree.
 A binary tree is a tree like data structure in which any node can have up to
 two branches to additional nodes. When visualized the data structure looks
 like a tree.
+
 .. sourcecode::
 
         a
@@ -54,7 +55,7 @@ E the right child of B.
 
 Binary Trees are almost always used in Computer Science when it comes to
 sorting, or searching. It is very rare you would need to code a Binary Tree
-yourself, but knowing how they work is benefical in understanding how certain
+yourself, but knowing how they work is beneficial in understanding how certain
 sorting, or searching algorithms perform.
 
 Root Node

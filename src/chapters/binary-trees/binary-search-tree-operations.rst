@@ -3,17 +3,17 @@ Binary Search Tree Operations
 =============================
 
 .. relevant objectives
-- Explain how to carry out binary search on a binary search tree
-- Understand Binary Search Tree Operations and their Big-O efficiency
-- Understand common operations on BSTs and their Big-O efficiency
-    - insert
-    - remove
-    - traverse
+    - Explain how to carry out binary search on a binary search tree
+    - Understand Binary Search Tree Operations and their Big-O efficiency
+    - Understand common operations on BSTs and their Big-O efficiency
+        - insert
+        - remove
+        - traverse
 
 .. relevant notes from paul
-- Binary Search Tree Search (how is it done)
-- Binary Search Tree operations (insert, remove, traverse)
-- Big O of binary search tree operations, and binary search
+    - Binary Search Tree Search (how is it done)
+    - Binary Search Tree operations (insert, remove, traverse)
+    - Big O of binary search tree operations, and binary search
 
 Importance of Balance
 ---------------------
@@ -25,7 +25,7 @@ Importance of Balance
 BST Operations
 --------------
 
-.. destructive operation vs non-destructive operation? Search is non-desctructive, but inserting, and removing is destructive.
+.. destructive operation vs non-destructive operation? Search is non-destructive, but inserting, and removing is destructive.
 
 Search
 ^^^^^^

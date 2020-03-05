@@ -3,24 +3,24 @@ Binary Search
 =============
 
 .. relevant objectives
-- Use binary search to efficiently find elements in ordered collections
-- Understand and write code to conduct a binary search on an ordered
-  collection (eg an array or list)
-- Explain why a data set must be sorted before conducting a binary search
+  - Use binary search to efficiently find elements in ordered collections
+  - Understand and write code to conduct a binary search on an ordered
+    collection (eg an array or list)
+  - Explain why a data set must be sorted before conducting a binary search
 
 .. relevant notes from paul
-- Sort (why it's important) (not how)
-- Binary Search on an ordered collection
-- Big O of binary search
+  - Sort (why it's important) (not how)
+  - Binary Search on an ordered collection
+  - Big O of binary search
 
-Sort Revisted
--------------
-We have seen an insertion sort algorithm. Sorting algos are very popular
+Sort Revisited
+--------------
+We have seen an insertion sort algorithm. Sorting algorithms are very popular
 algorithms, one of the reasons for their popularity is a sorted collection can
 be searched in O(log n) time. O(log n) time is one of the most performant
 Big-O notations. Show some examples of O(log n) vs O(n).
-How can we achieve O(log n) since it is supieror to O(n) especially as the
-datasets get much larger?
+How can we achieve O(log n) since it is superior to O(n) especially as the
+dataset get much larger?
 
 Binary Search
 -------------
