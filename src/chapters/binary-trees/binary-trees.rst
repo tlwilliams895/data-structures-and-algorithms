@@ -2,12 +2,22 @@
 Binary Trees
 ============
 
+.. link back to list section of C#
+
+.. pros
+
+.. cons -> this is why if you have an ordered list -- to put a new element in that is in the correct order O(n) -> how could we make that more efficient
+
+.. lead-in to BT ->
+
 .. relevant objectives
   - Understand the conceptual structure of a binary tree
 
 .. relevant notes from paul
   - how to convert an array / list into a BT
   - Understand the conceptual structure of a binary tree
+
+.. open with here is the data structure you've used the most list -- this is a new data structure, they have pros and cons
 
 Binary Tree
 -----------
@@ -59,26 +69,100 @@ sorting, or searching. It is very rare you would need to code a Binary Tree
 yourself, but knowing how they work is beneficial in understanding how certain
 sorting, or searching algorithms perform.
 
+.. 
+  list = [5, 7, 2, 10, 4, 3, 10, 11]
+
+    5
+  7   2
+10 4  3  10
+11 
+
+.. while these look very different look at similarities and differences in the structure
+.. similarities: ordered sequence of elements, unbounded
+.. differences: not flat. recursive structure...what do we mean by recursive structure?
+
+.. BT is a RECURSIVE structure? segue into the base algorithm of producing a tree
+.. what is the "algorithm" (in numbered steps) for converting from list to BT
+#. first element is the **root node**
+#. left child and right child
+#. repeat to next level producing another tree
+
+.. pros -> BT has the potential of more efficient search, insertion and deletion it is the base structure of which we can achieve these goals.
+.. it is a base structure from which certain operations can be made more performant analogous to relationship between arrays [base structure ordered sequence of elements] and lists [...]. the base provides the base characteristics which are fine tuned for specific use cases in the derived structures
+
 Root Node
 ^^^^^^^^^
+
+.. start with a list -> how do we turn this into a BT
+
+.. this is the root node value 8 which element 2 -> formal definition of a root node with regards to BT
+
+.. build the root node of the BT and display it
+
+
+.. console output
+        2
+
+We can see from the example that our next level looks like this
+
+  2 
+1   0
+
+What do we call this next level?
 
 Child Nodes
 ^^^^^^^^^^^
 
-Left Child
-^^^^^^^^^^
+.. using the same list -> this is how we get the child nodes from the list 
 
-Right Child
-^^^^^^^^^^^
+.. console output
 
-Balanced Tree?
-^^^^^^^^^^^^^^
+        2
+      1   3
 
-.. left and right subtrees of every node differ in height by no more than 1
+.. explain that one is called the **left child**, and the other is called the **right child**
+.. highlight and index
+.. complete the tree all the way down each child will get it's own child
+
+.. statement of what we have done is converting a list to a BT
+
+.. lead-in to balanced tree
+
+The Importance of Order
+=======================
+
+.. how does order affect searching in a list (it's still O(n)), but we can make assumptions smallest is first, largest is last -- can do a binary search
+
+.. as covered binary search is the optimal search algorithm
+how it applies to lists
+segue to how it applies to BT
+
+.. order matters in binary trees
+.. will be broken if the BT is not ordered
+  10
+ 2  5
+
+.. segue to ordering the tree into a sub-type of BT called a BST. BST excels in usage operations. a BST is balanced (use BST balanced def)...
+
+.. show same example but now in order to recognize power of BST
+  2
+5  10
+
+.. in the next section we will explore how a BST works to support the performance measures
+
+
+An Ordered Binary Tree
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. we mean ordered as far as BST's are balanced -- we do not care about are even need to mention binary tree balancing
+.. serve as the segue to BST
+.. identify that the benefits of BT are only realized in a BST
+
+.. root node is median of a range of values -- greater or equal values go to the right child, lesser values go to the left child
 
 .. diagram
 
-.. TODO:: do we care about all four of these classifications? If not just Balanced, and Full is my guess.
+.. note about seeing the term balanced refering to just BT, and not BST, but for the purposes of this class we we say balanced we are always referring to a balanced BST
 
 Concept Checks
 --------------

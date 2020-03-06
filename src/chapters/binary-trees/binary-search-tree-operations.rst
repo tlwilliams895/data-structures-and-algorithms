@@ -18,9 +18,7 @@ Binary Search Tree Operations
 Importance of Balance
 ---------------------
 
-.. with regards to adding, or removing nodes how does this affect balance? If the balance is affected how do you ensure the tree can be searched via BS?
-
-.. lead into the operations and how every operation will also have to ensure the tree is still balanced
+.. again hitting the power of BST is it's very performant operations, but the more the tree becomes unbalanced the further away from log(n) you move. The destructive operations will create an unbalanced tree, but rebalancing it goes beyond the scope of this class
 
 BST Operations
 --------------

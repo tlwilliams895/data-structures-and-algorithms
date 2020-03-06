@@ -21,7 +21,10 @@ Binary Search Trees
 
 Binary Search Tree
 ------------------
-A Binary Search Tree, is a Binary Tree that is sorted. Like the Binary Tree
+
+.. binary search tree is the combination of the concept of a binary search, and a binary tree. This helps visualize how a binary search works.
+
+A Binary Search Tree, is a Binary Tree that is balanced. Like the Binary Tree
 each node can have no more than two child nodes. But in the case of ordering
 the tree there is an additional rule: The left child most be a smaller value
 than the parent node, and the right child most be a greater value than the parent
@@ -52,13 +55,19 @@ of the array (rounding up): 30.
 
 We would need to keep this up to fill out the rest of the tree.
 
+.. instead of the big ugly paragraphs maybe outline it as psuedocode passes like in the insertion sort
+
 Depth
 ^^^^^
 
 .. what is the concept of depth? How does it pertain to BSTs?
 
+.. is this the same concept has height to BT if so, we could just include this in the BT as both would hold true for BST
+
 Balance
 ^^^^^^^
+
+.. we mention that a BST is just a balanced BT that follows specific rules. What does a balanced BST look like, what does an unbalanced BST look like -- why is it still considered a BST when it is unbalanced?
 
 .. what do we mean when we say the BST is balanced?
 
@@ -66,6 +75,9 @@ Balance
 
 .. logically (conceptually) what would you need to do to balance, and unbalanced tree?
 
+.. show the code of how a BST would be created from an ordered list (this will still be conceptual because they dont' know operations yet, but they should be able to take an ordered list and turn it into a BST manually. Also they should be able to take an unbalanced BST -- turn it into an ordered list, and then create a balanced BST from that ordered list)
+
+.. when would we ever need to balance a BST -- when the BST is mutated -- enter operations (as it's important for most data structures to be mutable)
 
 Concept Checks
 --------------
