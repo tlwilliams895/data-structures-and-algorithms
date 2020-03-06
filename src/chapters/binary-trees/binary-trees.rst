@@ -6,6 +6,7 @@ Binary Trees
   - Understand the conceptual structure of a binary tree
 
 .. relevant notes from paul
+  - how to convert an array / list into a BT
   - Understand the conceptual structure of a binary tree
 
 Binary Tree
