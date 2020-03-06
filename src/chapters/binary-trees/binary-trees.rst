@@ -71,29 +71,6 @@ Left Child
 Right Child
 ^^^^^^^^^^^
 
-Complete Tree
-^^^^^^^^^^^^^
-
-.. every level, except the last level if completely filled
-
-.. diagram
-
-Full Tree
-^^^^^^^^^
-
-.. Each node has exactly 0, or 2 nodes
-
-.. diagram
-
-Perfect Tree
-^^^^^^^^^^^^
-
-.. All nodes have exactly 2 nodes, except for the final level of depth in which all nodes have 0 attached nodes
-
-.. A perfect tree is a full tree, but a full tree isn't always a perfect tree.
-
-.. diagram
-
 Balanced Tree?
 ^^^^^^^^^^^^^^
 
