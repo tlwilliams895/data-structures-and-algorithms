@@ -19,6 +19,12 @@ Binary Trees
 
 .. open with here is the data structure you've used the most list -- this is a new data structure, they have pros and cons
 
+Throughout this course you have been using a list (both JavaScript and C#) to meet the needs of our various data requirements. Lists are great. They allow us to collect data together, and reference the contents by accessing their index. The majority of lists are unordered, but we learned to order them by using built in sort methods.
+
+Lists are fantastic for collecting together data, but to search for a specific piece of data in an unordered list you typically would use a simple search, which is O(n). Lists aren't less performant the larger they get.
+
+Today we will be introducing a new data structure that will allow us to easily use a Binary Search easily with our new data structure the Binary Tree.
+
 Binary Tree
 -----------
 Taking the example we saw for Binary Search let's turn it into a Binary Tree.
