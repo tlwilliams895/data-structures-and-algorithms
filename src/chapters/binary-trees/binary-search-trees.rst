@@ -60,20 +60,13 @@ We would need to keep this up to fill out the rest of the tree.
 Convert Ordered List to Binary Search Tree
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+
 Balance
 ^^^^^^^
 
-.. we mention that a BST is just a balanced BT that follows specific rules. What does a balanced BST look like, what does an unbalanced BST look like -- why is it still considered a BST when it is unbalanced?
+As a final point a Binary Search Tree follow the rules of a Binary Tree, and the additional rule that all left child nodes must be smaller than the parent node, and all right child nodes must be greater than or equal to the parent node.
 
-.. what do we mean when we say the BST is balanced?
-
-.. what would happen if the tree were to become unbalanced?
-
-.. logically (conceptually) what would you need to do to balance, and unbalanced tree?
-
-.. show the code of how a BST would be created from an ordered list (this will still be conceptual because they dont' know operations yet, but they should be able to take an ordered list and turn it into a BST manually. Also they should be able to take an unbalanced BST -- turn it into an ordered list, and then create a balanced BST from that ordered list)
-
-.. when would we ever need to balance a BST -- when the BST is mutated -- enter operations (as it's important for most data structures to be mutable)
+The benefit of a Binary Search Tree is that we can perform value search, value insertion, and value deletion in ``O(log n)`` time.
 
 Concept Checks
 --------------
