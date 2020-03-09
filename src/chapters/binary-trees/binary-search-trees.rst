@@ -2,6 +2,8 @@
 Binary Search Trees
 ===================
 
+As we saw from our final example in the previous section a Binary Tree that follows a couple of additional rules becomes a balanced Binary Tree or as we call it in Computer Science a ``Binary Search Tree``.
+
 .. relevant objectives
   - Understand the conceptual structure of a binary search tree
   - Understand the concept of a depth of a BST
@@ -21,8 +23,6 @@ Binary Search Trees
 
 Binary Search Tree
 ------------------
-
-.. binary search tree is the combination of the concept of a binary search, and a binary tree. This helps visualize how a binary search works.
 
 A Binary Search Tree, is a Binary Tree that is balanced. Like the Binary Tree
 each node can have no more than two child nodes. But in the case of ordering
@@ -57,12 +57,8 @@ We would need to keep this up to fill out the rest of the tree.
 
 .. instead of the big ugly paragraphs maybe outline it as psuedocode passes like in the insertion sort
 
-Depth
-^^^^^
-
-.. what is the concept of depth? How does it pertain to BSTs?
-
-.. is this the same concept has height to BT if so, we could just include this in the BT as both would hold true for BST
+Convert Ordered List to Binary Search Tree
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Balance
 ^^^^^^^

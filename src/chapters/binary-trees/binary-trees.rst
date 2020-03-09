@@ -157,6 +157,19 @@ This leaves us with one final number in our list: ``4``. We have met the total n
 
 So in this case ``4`` will become the left child of the node ``19``.
 
+Depth
+^^^^^
+
+The final term you should learn for Binary Tree is ``depth``. ``Depth`` refers to the number of levels in a given Binary Tree.
+
+.. sourcecode::
+
+         5
+      19   2
+    4
+
+With the example we have used throughout this section we can see 3 clear levels to our tree. ``5`` is the first level, ``19`` and ``2`` are at the second level and ``4`` is at the third level. The depth of this tree is 3.
+
 .. note::
 
   What you have seen is the basic algorithm for turning a list into a Binary Tree. In future sections you will see slightly more complex algorithms for creating a balanced Binary Tree from a list.
