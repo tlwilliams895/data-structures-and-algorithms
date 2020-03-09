@@ -87,6 +87,14 @@ sorting, or searching algorithms perform.
 .. similarities: ordered sequence of elements, unbounded
 .. differences: not flat. recursive structure...what do we mean by recursive structure?
 
+To assist with learning this new data structure lets talk about how they are similar.
+
+They are both data structures that can hold any number of elements. They both have a starting element, index of 0 for a list, and the root node for a Binary Tree. They both have connections to other elements in the list. You can move forward or backward in a list, whereas you can move to the left child, or right child of a Binary Tree. They can both be unordered, or ordered.
+
+One of the main ways lists, and binary trees are different is in the indexing of values for arrays. With an array you can access the first value by accessing index 0. You can use the same practice to access any value in the arary, you simply need to know it's position. In a binary tree you cannot access a value by knowing it's position. You find values by looking into one nodes children, and keep checking children until you find the value you are looking for. So how the data structure is used is quite different. We will see examples of how this is used in future sections.
+
+Since you cannot access an element by it's index and you must search through child relationships, this makes a Binary Tree a recursive structure.
+
 .. BT is a RECURSIVE structure? segue into the base algorithm of producing a tree
 .. what is the "algorithm" (in numbered steps) for converting from list to BT
 #. first element is the **root node**
@@ -105,70 +113,82 @@ Root Node
 
 .. build the root node of the BT and display it
 
+In a Binary Tree the root node is the first element of our data structure.
 
-.. console output
-        2
+In the example list ``[5, 19, 2, 4]`` our first element is ``5``.
 
-We can see from the example that our next level looks like this
+In the example binary tree
 
-  2 
-1   0
+.. sourcecode::
 
-What do we call this next level?
+         5
+      19   2
+    4
+
+``5`` is our root node. The element at the top of our tree is always considered the root node of the Binary Tree.
+
+So what are the remaining nodes called?
 
 Child Nodes
 ^^^^^^^^^^^
 
-.. using the same list -> this is how we get the child nodes from the list 
+The next level down from our root node would be the child nodes of our root node.
 
-.. console output
+So in the example above of
 
-        2
-      1   3
+.. sourcecode::
 
-.. explain that one is called the **left child**, and the other is called the **right child**
-.. highlight and index
-.. complete the tree all the way down each child will get it's own child
+         5
+      19   2
+    4
 
-.. statement of what we have done is converting a list to a BT
+5 is our root node, and it has two children: ``19`` and ``2``.
 
-.. lead-in to balanced tree
+Even though both ``19`` and ``2`` are considered child nodes of ``5``, we may want to distinguish between the children so we have further classifications: ``left child`` and ``right child``.
+
+In the example above ``19`` would be the ``left child`` of ``5``, and ``2`` would be the right child of ``5``.
+
+Taking the list we had before we have ``[5, 19, 2, 4]``.
+- ``5`` becomes the root node
+- ``19`` becomes the left child of ``5``
+- ``2`` becomes the right child of ``5``
+
+This leaves us with one final number in our list: ``4``. We have met the total number of children that ``5`` can have with two (both ``19`` and ``2``) so ``4`` cannot be a child of ``5``. So in this case we move down a level to the left child of our now full node.
+
+So in this case ``4`` will become the left child of the node ``19``.
+
+.. note::
+
+  What you have seen is the basic algorithm for turning a list into a Binary Tree. In future sections you will see slightly more complex algorithms for creating a balanced Binary Tree from a list.
 
 The Importance of Order
-=======================
+-----------------------
 
-.. how does order affect searching in a list (it's still O(n)), but we can make assumptions smallest is first, largest is last -- can do a binary search
+What we have seen so far is the basic terminology for Binary Tree and a simple algorithm that takes a list and converts it into a Binary Tree. However, the power of Binary Trees in computer science is performing performant (``O(log n)``) search, insertion, and deletion. With an unordered Binary Tree you cannot achieve ``O(log n)``.
 
-.. as covered binary search is the optimal search algorithm
-how it applies to lists
-segue to how it applies to BT
+Let's take an example of finding a specific value in the Binary Tree we created above.
 
-.. order matters in binary trees
-.. will be broken if the BT is not ordered
-  10
- 2  5
+.. sourcecode::
 
-.. segue to ordering the tree into a sub-type of BT called a BST. BST excels in usage operations. a BST is balanced (use BST balanced def)...
+         5
+      19   2
+    4
 
-.. show same example but now in order to recognize power of BST
-  2
-5  10
+What if we are looking for the value ``2``. We would first check the root node ``5``. Does ``5`` equal ``2``? No, we need to move on. Let's check the left node of the root node. ``19``. Does ``19`` equal ``2``. It does not. Let's check the left node of the ``19`` which is ``4``. Does ``4`` equal ``2`` no. Since we don't have any left nodes let's move back up a level. ``19`` does not have any right nodes so let's move up a level. ``5`` has a right node that is ``2``. Does ``2`` equal ``2`` yes! We found our value in 4 checks which happens to be the length of our data structure. The worst case was ``O(n)`` which isn't awful, but not as good as a binary search ``O(log n)``.
 
-.. in the next section we will explore how a BST works to support the performance measures
+However, what if this Binary Tree was ordered so that the left child was always smaller than the parent node, and the right child is always greater than or larger than the parent? What if we tried to put our Binary Tree is a specific order?
 
+.. sourcecode::
 
-An Ordered Binary Tree
-^^^^^^^^^^^^^^^^^^^^^^
+         5
+      4     19
+    2
 
-.. we mean ordered as far as BST's are balanced -- we do not care about are even need to mention binary tree balancing
-.. serve as the segue to BST
-.. identify that the benefits of BT are only realized in a BST
+Now if we try to search through our Binary Tree, since it is ordered and follows the rule that every left child is smaller, and every right child is larger or equal to the parent node, we can easily do a binary search.
 
-.. root node is median of a range of values -- greater or equal values go to the right child, lesser values go to the left child
+If we are looking for the value ``2``. We would first check the root node ``5``. Does ``5`` equal ``2``. No, but now we can make an informed decision. If ``2`` is smaller than ``5`` we know to check the left child. If ``2`` is greater than or equal to ``5`` we know to check the right child. What is the left child of ``5``, ``4``. Does ``2`` equal ``4``. No. Is ``2`` smaler than, or greather than or equal to ``4``. It is smaller so we need to check the left child again. Does ``2`` equal ``2``? Yes! We found the matching value in one less iteration than the previous check.
 
-.. diagram
-
-.. note about seeing the term balanced refering to just BT, and not BST, but for the purposes of this class we we say balanced we are always referring to a balanced BST
+A Binary Tree that is the order mentioned above makes it very easy to visualize and perform Binary Searches!
 
 Concept Checks
 --------------
