@@ -28,9 +28,21 @@ BST Operations
 Search
 ^^^^^^
 
-.. is traverse the same thing as search? if not how are they different and do they need separate sections?
-
 .. Big-O of Search
+
+We have seen Binary Search already through this chapter multiple times, and we have seen how a Binary Search Tree handles a search, but let's go through one final example.
+
+.. sourcecode::
+
+                10
+            6       19
+          3   9   13    25
+         2 5 7   11 14    30
+
+What are the steps for searching for ``13``.
+- check the first node ``10``. ``13`` is greater than ``10`` so go to the right node.
+- check the right child of the first node ``19``. ``13`` is smaller than ``19`` so go to the left.
+- check the left child of previous node ``13``. ``13`` is the number we are looking for and we are done!
 
 Insert
 ^^^^^^
@@ -45,3 +57,7 @@ Remove
 .. how do you keep the tree balanced when removing?
 
 .. Big-O of Remove
+
+.. note::
+
+    Insert and Remove are destructive operations as they change the structure of the Tree. When you change the Tree it isn't perfectly balanced. Re-balancing a tree after using a destructive operation goes beyond the scope of this course, but is a fascinating topic. If you want to learn more look into red-black trees which are essentially Binary Search Trees that have the ability to re-balance themselves after each operation.
