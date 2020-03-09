@@ -68,5 +68,7 @@ As a final point a Binary Search Tree follow the rules of a Binary Tree, and the
 
 The benefit of a Binary Search Tree is that we can perform value search, value insertion, and value deletion in ``O(log n)`` time.
 
+In the next section of the chapter we will look at adding (insertion), and deleting (deletion) items from the Binary Search Tree.
+
 Concept Checks
 --------------
