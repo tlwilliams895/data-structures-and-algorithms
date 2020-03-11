@@ -21,14 +21,12 @@ Binary Trees
 
 Throughout this course you have been using a list (both JavaScript and C#) to meet the needs of our various data requirements. Lists are great. They allow us to collect data together, and reference the contents by accessing their index. The majority of lists are unordered, but we learned to order them by using built in sort methods.
 
-Lists are fantastic for collecting together data, but to search for a specific piece of data in an unordered list you typically would use a simple search, which is O(n). Lists aren't less performant the larger they get.
+Lists are fantastic for collecting together data, but to search for a specific piece of data in an unordered list you typically would use a simple search, which is O(n). Lists are less performant the larger they get.
 
 Today we will be introducing a new data structure that will allow us to easily use a Binary Search easily with our new data structure the Binary Tree.
 
 Binary Tree
 -----------
-Taking the example we saw for Binary Search let's turn it into a Binary Tree.
-Collection: (1, 2, 3, 4, 8, 9, 10, 14, 18, 20, 30)
 
 Before we can learn about a Binary Search Tree which is the unique data
 structure that works with Binary Search, we have to learn about the data
@@ -73,36 +71,11 @@ E the right child of B.
 Binary Trees are almost always used in Computer Science when it comes to
 sorting, or searching. It is very rare you would need to code a Binary Tree
 yourself, but knowing how they work is beneficial in understanding how certain
-sorting, or searching algorithms perform.
+sorting, or searching algorithms are performed.
 
-.. 
-  list = [5, 7, 2, 10, 4, 3, 10, 11]
-
-    5
-  7   2
-10 4  3  10
-11 
-
-.. while these look very different look at similarities and differences in the structure
-.. similarities: ordered sequence of elements, unbounded
-.. differences: not flat. recursive structure...what do we mean by recursive structure?
-
-To assist with learning this new data structure lets talk about how they are similar.
-
-They are both data structures that can hold any number of elements. They both have a starting element, index of 0 for a list, and the root node for a Binary Tree. They both have connections to other elements in the list. You can move forward or backward in a list, whereas you can move to the left child, or right child of a Binary Tree. They can both be unordered, or ordered.
-
-One of the main ways lists, and binary trees are different is in the indexing of values for arrays. With an array you can access the first value by accessing index 0. You can use the same practice to access any value in the arary, you simply need to know it's position. In a binary tree you cannot access a value by knowing it's position. You find values by looking into one nodes children, and keep checking children until you find the value you are looking for. So how the data structure is used is quite different. We will see examples of how this is used in future sections.
+One of the main ways lists, and binary trees are different is in the indexing of values for arrays. With an array you can access the first value by accessing index 0. You can use the same practice to access any value in the array, you simply need to know it's position. In a binary tree you cannot access a value by knowing it's position. You find values by looking into one nodes children, and keep checking children until you find the value you are looking for. So how the data structure is used is quite different. We will see examples of how this is used in future sections.
 
 Since you cannot access an element by it's index and you must search through child relationships, this makes a Binary Tree a recursive structure.
-
-.. BT is a RECURSIVE structure? segue into the base algorithm of producing a tree
-.. what is the "algorithm" (in numbered steps) for converting from list to BT
-#. first element is the **root node**
-#. left child and right child
-#. repeat to next level producing another tree
-
-.. pros -> BT has the potential of more efficient search, insertion and deletion it is the base structure of which we can achieve these goals.
-.. it is a base structure from which certain operations can be made more performant analogous to relationship between arrays [base structure ordered sequence of elements] and lists [...]. the base provides the base characteristics which are fine tuned for specific use cases in the derived structures
 
 Root Node
 ^^^^^^^^^
@@ -146,7 +119,7 @@ So in the example above of
 
 Even though both ``19`` and ``2`` are considered child nodes of ``5``, we may want to distinguish between the children so we have further classifications: ``left child`` and ``right child``.
 
-In the example above ``19`` would be the ``left child`` of ``5``, and ``2`` would be the right child of ``5``.
+In the example above ``19`` would be the ``left child`` of ``5``, and ``2`` would be the ``right child`` of ``5``.
 
 Taking the list we had before we have ``[5, 19, 2, 4]``.
 - ``5`` becomes the root node
@@ -173,6 +146,25 @@ With the example we have used throughout this section we can see 3 clear levels 
 .. note::
 
   What you have seen is the basic algorithm for turning a list into a Binary Tree. In future sections you will see slightly more complex algorithms for creating a balanced Binary Tree from a list.
+
+Convert List to Binary Tree
+---------------------------
+
+As a final example let's turn the list we saw from the last section into a Binary Tree.
+Collection: (1, 2, 3, 4, 8, 9, 10, 14, 18, 20, 30)
+
+.. sourcecode::
+
+                  1
+          2                3
+      4       8         9      10
+   14   18  20  30
+
+With this list we simply choose our first element to be our root node. Then sequentially moving through the list we fill out the left child of the root, and then the right child of the root. Then we move onto the left child of the root filling out its left and right child before moving to the right child of the root. We continue this pattern until we have transferred all of the elements from the list to the Binary Tree.
+
+.. note::
+
+  There are other algorithms for converting lists to Binary Trees and we will see another example in a future section.
 
 The Importance of Order
 -----------------------
@@ -201,7 +193,7 @@ Now if we try to search through our Binary Tree, since it is ordered and follows
 
 If we are looking for the value ``2``. We would first check the root node ``5``. Does ``5`` equal ``2``. No, but now we can make an informed decision. If ``2`` is smaller than ``5`` we know to check the left child. If ``2`` is greater than or equal to ``5`` we know to check the right child. What is the left child of ``5``, ``4``. Does ``2`` equal ``4``. No. Is ``2`` smaler than, or greather than or equal to ``4``. It is smaller so we need to check the left child again. Does ``2`` equal ``2``? Yes! We found the matching value in one less iteration than the previous check.
 
-A Binary Tree that is the order mentioned above makes it very easy to visualize and perform Binary Searches!
+A Binary Tree that is the order mentioned above makes it very easy to both visualize and perform Binary Searches!
 
 Concept Checks
 --------------
