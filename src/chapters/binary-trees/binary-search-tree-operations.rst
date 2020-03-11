@@ -18,7 +18,6 @@ Binary Search Tree Operations
 BST Operations
 --------------
 
-.. destructive operation vs non-destructive operation? Search is non-destructive, but inserting, and removing is destructive.
 When performing operations on a Binary Search Tree we typically think of three things:
     - Searching for values
     - Inserting new values
@@ -38,19 +37,80 @@ We have seen Binary Search already through this chapter multiple times, and we h
           3   9   13    25
          2 5 7   11 14    30
 
-What are the steps for searching for ``13``.
-- check the first node ``10``. ``13`` is greater than ``10`` so go to the right node.
-- check the right child of the first node ``19``. ``13`` is smaller than ``19`` so go to the left.
-- check the left child of previous node ``13``. ``13`` is the number we are looking for and we are done!
+What are the steps for searching for ``13``:
+    - check the first node ``10``. ``13`` is greater than ``10`` so go to the right node.
+    - check the right child of the first node ``19``. ``13`` is smaller than ``19`` so go to the left.
+    - check the left child of previous node ``13``. ``13`` is the number we are looking for and we are done!
 
-This Binary Search Tree is perfectly balanced so our search take ``O(log n)``.
+This Binary Search Tree is perfectly balanced so our search take at worst ``O(log n)``.
 
 Insert
 ^^^^^^
 
-.. how do you keep the tree balanced when inserting?
+Let's take the example from above and add a couple of new values to it.
 
-.. Big-O of Insertion
+.. sourcecode::
+
+                10
+            6       19
+          3   9   13    25
+         2 5 7   11 14    30
+
+First lets add a new largest value: ``31``
+
+.. sourcecode::
+
+                10
+            6       19
+          3   9   13    25
+         2 5 7   11 14    30
+                            31
+
+Lets consider the logic. We want to add a new value ``31``. We first check our root node ``10``. Our new value (``31``) is larger than 10. So this most go as the right child. However, the right child of ``10`` is already taken with the value of ``19`` so we keep comparing. Our new value ``31`` is greater than ``19`` so we need to put our new value in the right node spot of ``19``, however that spot is already taken by ``30``. Our new value ``31`` is larger than ``30`` so we need to put ``31`` into right child node of ``30``. That spot is currently available so we can put our new value ``31`` as the right child of ``30``.
+
+To add a new value we simply perform a binary search to determine where the new position goes.
+
+Lets see another example. Lets add the value ``4`` to our new BST.
+
+.. sourcecode::
+
+                10
+            6       19
+          3   9   13    25
+        2  5 7   11 14    30
+          4                 31
+
+Considering the logic. ``4`` is smaller than our root node ``10``. It's smaller than the left child ``6``. It's larger than the left child ``3``. It's smaller than the right child ``5``, and ``5`` has an empty left child node which is where we put ``4``.
+
+Let's add another value as an example ``13``.
+
+.. sourcecode::
+
+                10
+            6       19
+          3   9   13    25
+        2  5 7   11 14    30
+          4        13       31
+
+The value we are inserting is a value already on our tree ``13``.
+
+Let's walk through the logic to figure out how it was inserted into this spot.
+
+``13`` is greater than our root node ``10`` so we need to check the right child. ``13`` is less than ``19`` so we need to check the left child. ``13`` is greater than or equal to ``13`` so we need to check the right child. ``13`` is less than ``14`` so we need to check the left child which is empty and becomes the spot for our new value ``13``.
+
+As a final insertion example let's add ``10``.
+
+``10`` is greater than or equal to our root node. ``10`` is less than ``19``. ``10`` is less than ``13``. ``10`` is less than ``11``. So it should go into the left child of ``11``.
+
+.. sourcecode::
+
+                10
+            6       19
+          3   9   13    25
+        2  5 7   11 14    30
+          4     10 13       31
+
+Since our insertion into a Binary Search Tree relies on a Binary Search to find the position of the new node, this operation is performed in ``O(log n)`` time!
 
 Remove
 ^^^^^^
