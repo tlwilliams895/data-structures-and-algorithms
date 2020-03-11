@@ -15,20 +15,19 @@ Binary Search Tree Operations
     - Binary Search Tree operations (insert, remove, traverse)
     - Big O of binary search tree operations, and binary search
 
-Importance of Balance
----------------------
-
-.. again hitting the power of BST is it's very performant operations, but the more the tree becomes unbalanced the further away from log(n) you move. The destructive operations will create an unbalanced tree, but rebalancing it goes beyond the scope of this class
-
 BST Operations
 --------------
 
 .. destructive operation vs non-destructive operation? Search is non-destructive, but inserting, and removing is destructive.
+When performing operations on a Binary Search Tree we typically think of three things:
+    - Searching for values
+    - Inserting new values
+    - Deleting existing values
+
+Inserting, and deleting requires a change to the Binary Search Tree which we consider destructive actions as they alter the underlying structure of our data. The tree can remain balanced by following the rules outlined in the previous sections, however the more destructive actions that are performed on the tree the less performant the tree becomes. It moves further away from ``O(log n)``, and more towards ``O(n)``. We will show an example in a later section to demonstrate this.
 
 Search
 ^^^^^^
-
-.. Big-O of Search
 
 We have seen Binary Search already through this chapter multiple times, and we have seen how a Binary Search Tree handles a search, but let's go through one final example.
 
@@ -43,6 +42,8 @@ What are the steps for searching for ``13``.
 - check the first node ``10``. ``13`` is greater than ``10`` so go to the right node.
 - check the right child of the first node ``19``. ``13`` is smaller than ``19`` so go to the left.
 - check the left child of previous node ``13``. ``13`` is the number we are looking for and we are done!
+
+This Binary Search Tree is perfectly balanced so our search take ``O(log n)``.
 
 Insert
 ^^^^^^
