@@ -115,6 +115,56 @@ Since our insertion into a Binary Search Tree relies on a Binary Search to find 
 Remove
 ^^^^^^
 
+Remove is similar to Insert in that it relies on a Binary Search to find the initial value to be removed. Using the final BST we had at the end of the last section let's try to remove ``31``.
+
+.. sourcecode::
+
+                10
+            6       19
+          3   9   13    25
+        2  5 7   11 14    30
+          4     10 13       
+
+To find this value a binary search was performed:
+    - ``31`` is greater than ``10``
+    - ``31`` is greater than ``19``
+    - ``31`` is greater than ``25``
+    - ``31`` is greater than ``30``
+    - ``31`` equals ``31``
+
+The value ``31`` was found. The next step is to see if ``31`` has any child nodes. It does not so it can be deleted without further action.
+
+Let's try removing a value that has child nodes: ``3``
+
+.. sourcecode::
+
+                10
+            6       19
+          2   9   13    25
+           5 7   11 14    30
+          4     10 13 
+
+Something interested happened. ``3``'s left child took the place of ``3``. Why did that happen? 
+
+Let's walk through the logic a binary search was performed to find the value:
+    - ``3`` is less than ``10``
+    - ``3`` is less than ``6``
+    - ``3`` equals ``3``!
+
+We found the value through a Binary Search. But what do we know about ``3``?
+
+We know is that ``3`` was the left child of its parent node ``6``. To keep our Binary Search Tree balanced we need to ensure that any value placed into ``3``'s position is still follows our rules for our Binary Search Tree. In this case ``3`` only has one total child, and that child doesn't have any children. So we can simply move it's child into its current spot in the tree. So in this case ``3``'s only child ``2`` moves into ``3``'s position in the Binary Search Tree.
+
+Let's try it on the right side to see what happens. Let's remove the value ``19``.
+
+.. sourcecode::
+
+                10
+            6       25
+          2   9   13    30
+           5 7   11 14    
+          4     10 13 
+
 .. how do you keep the tree balanced when removing?
 
 .. Big-O of Remove
