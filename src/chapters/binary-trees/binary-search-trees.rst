@@ -25,11 +25,31 @@ Binary Search Tree
 ------------------
 
 A Binary Search Tree, is a Binary Tree that is balanced. Like the Binary Tree
-each node can have no more than two child nodes. But in the case of ordering
-the tree there is an additional rule: The left child most be a smaller value
-than the parent node, and the right child most be a greater value than the parent
-node. Ordering our data this way makes performing Binary searches easy to
-visualize.
+each node can have no more than two child nodes. But in the case of balancing the Binary Tree, which creates a Binary Search Tree,
+there are two additional rules: 
+  #. The left child most be a smaller value than the parent node
+  #. The right child most be a greater than or equal in value to the parent node
+
+Let's see an example of a balanced Binary Tree which is a Binary Search Tree.
+
+.. sourcecode::
+
+            7
+      3           15
+    1   3       8    17
+
+This Binary Tree is balanced. ``7`` is our root node. It has two children: ``3`` the left child node which is smaller in value than its parent (``7``) and ``15`` the right child node which is greater than or equal to its parent (``7``).
+
+``3`` has two children: ``1`` the left child is smaller in value than its parent and ``3`` which is greater than or equal to its parent.
+
+``15`` has two children: ``8`` the left child is smaller in value than its parent and ``17`` which is greater than or equal to its parent.
+
+This is an example of balanced Binary Tree, which is also known as a Binary Search Tree!
+
+.. instead of the big ugly paragraphs maybe outline it as psuedocode passes like in the insertion sort
+
+Convert Ordered List to Binary Search Tree
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Taking the example we saw for Binary Search let's turn it into a Binary Tree.
 
@@ -54,12 +74,6 @@ know what is the middle of the remaining nodes between 18 and the last element
 of the array (rounding up): 30.
 
 We would need to keep this up to fill out the rest of the tree.
-
-.. instead of the big ugly paragraphs maybe outline it as psuedocode passes like in the insertion sort
-
-Convert Ordered List to Binary Search Tree
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 
 Balance
 ^^^^^^^
