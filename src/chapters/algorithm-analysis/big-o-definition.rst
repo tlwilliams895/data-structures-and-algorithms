@@ -51,56 +51,6 @@ Below is a graph of the common big-O Values you are likely to encounter. We will
 
 
 The Elementary Big-O Values
-===========================
-
-From the graph above you likely noticed that two linear big-O Values, *O(1)* and *O(n)*. Before getting into more complex Values let's learn the basics by exploring these elementary notations in the context of individual steps. Later we will learn how to use big-O arithmetic to combine and reduce the steps of an algorithm to determine its big-O Value. 
-
-.. admonition:: Tip
-
-  Remember that the big-O of an algorithm is made up of the big-O `of the steps within it`. 
-
-.. index:: pseudocode
-.. index:: O(1)
-
-*O(1):* Constant Time
------------------------
-
-A big-O value of *1* means the time complexity is *independent of the size of the input *n**. No matter how large the input size is the growth rate will always remain constant. In other words its growth rate is a fixed value represented graphically as a horizontal line. 
-
-- A step classified as of *O(1)* means that its operation runs in constant time.
-- By extension an algorithm classified as *O(1)* means the execution of its steps will run constant time. 
-
-
-::
-
-   # a simple print statement
-   print "I am a simple print statement"
-
-   # indexing into an element of an Array of size n
-   second_element = array[1]
-
-   # finding the smallest value of an Array of n numbers that are sorted in ascending order
-   smallest_element = sorted_array[0]
-
-*O(n)*: Linear Time
----------------------
-
-A big-O value of *n* means the time complexity *is directly proportional to the size of the input* *n*. As the input size is increased it will grow at a constant rate. It is represented graphically as a positively sloped line. 
-
-It is associated programmatically with a finite loop, such as a ``for`` loop, that repeats according to the size of *n*.
-
-- An *O(n)* step is a loop that will iterate *n* number of times
-- An algorithm classified as *O(n)* will take *n* many operations to complete its steps
-
-::
-
-   # a loop iterating n number of times
-   repeat from 0 to n:
-   # some sub step(s)
-
-   # a loop iterating over each element in an Array of size n
-   for element in array:
-   # some sub step(s)
 
 Check Your Understanding
 ========================
@@ -116,7 +66,7 @@ Check Your Understanding
 
 .. admonition:: Question
 
-  The upper bound input value of a function is the limit where its curve becomes vertical
+  The limit of a complexity function is the point where its curve becomes vertical
 
   - true
   - false
@@ -125,7 +75,11 @@ Check Your Understanding
 
 .. admonition:: Question
 
+<<<<<<< HEAD
   The big-O of an algorithm is the upper bound representation of its behavior
+=======
+  The Big-O of an algorithm is the upper bound classification of its behavior
+>>>>>>> algorithm-analysis
 
   - true
   - false
@@ -134,11 +88,13 @@ Check Your Understanding
 
 .. admonition:: Question
 
+<<<<<<< HEAD
   An algorithm's actual growth rate at increasing input sizes will always be less than the upper bound of the big-O Value that classifies it
+=======
+  An algorithm's actual growth rate at will always be less than the upper bound of the Big-O Value that classifies it
+>>>>>>> algorithm-analysis
 
   - true
   - false
 
 .. true
-
-
