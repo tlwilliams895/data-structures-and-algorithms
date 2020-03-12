@@ -1,61 +1,42 @@
+binary search trees
 ===================
-Binary Search Trees
-===================
 
-As we saw from our final example in the previous section a Binary Tree that follows a couple of additional rules becomes a balanced Binary Tree or as we call it in Computer Science a ``Binary Search Tree``.
+As we saw from our final example in the previous section a binary tree that follows a couple of additional rules becomes a balanced binary tree or as we call it in Computer Science a **binary search tree**.
 
-.. relevant objectives
-  - Understand the conceptual structure of a binary search tree
-  - Understand the concept of a depth of a BST
-  - Explain what it means for a BST to be balanced
-  - Explain how a BST might become unbalanced (including worst-case scenarios),
-    and how an unbalanced tree affects the efficiency of a binary search
-  - Understand how to balance a BST (segue to operations)
-
-.. relevant notes from paul
-  - Binary Search Tree
-  - Depth with regards to a BST
-  - Balance with regards to a BST
-  - Unbalanced BST (including worst-case scenarios for an unbalanced BST)
-  - Balancing an unbalanced BST
-  - Difference between a Binary Tree (structure) and a Binary Search Tree
-    (ordered structure)
-
-Binary Search Tree
+binary search tree
 ------------------
 
-A Binary Search Tree, is a Binary Tree that is balanced. Like the Binary Tree
-each node can have no more than two child nodes. But in the case of balancing the Binary Tree, which creates a Binary Search Tree,
+A binary search tree, is a binary tree that is balanced. Like the binary tree
+each node can have no more than two child nodes. But in the case of balancing the binary tree, which creates a binary search tree,
 there are two additional rules: 
-  #. The left child most be a smaller value than the parent node
-  #. The right child most be a greater than or equal in value to the parent node
 
-Let's see an example of a balanced Binary Tree which is a Binary Search Tree.
+#. The left child most be a smaller value than the parent node
+#. The right child most be a greater than or equal in value to the parent node
 
-.. sourcecode::
+Let's see an example of a balanced binary tree which is a binary search tree.
+
+::
 
             7
       3           15
     1   3       8    17
 
-This Binary Tree is balanced. ``7`` is our root node. It has two children: ``3`` the left child node which is smaller in value than its parent (``7``) and ``15`` the right child node which is greater than or equal to its parent (``7``).
+This binary tree is balanced. ``7`` is our root node. It has two children: ``3`` the left child node which is smaller in value than its parent (``7``) and ``15`` the right child node which is greater than or equal to its parent (``7``).
 
 ``3`` has two children: ``1`` the left child is smaller in value than its parent and ``3`` which is greater than or equal to its parent.
 
 ``15`` has two children: ``8`` the left child is smaller in value than its parent and ``17`` which is greater than or equal to its parent.
 
-This is an example of balanced Binary Tree, which is also known as a Binary Search Tree!
-
-.. instead of the big ugly paragraphs maybe outline it as psuedocode passes like in the insertion sort
+This is an example of balanced binary tree, which is also known as a binary search tree!
 
 Convert Ordered List to Binary Search Tree
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Taking the example we saw for Binary Search let's turn it into a Binary Tree.
+Taking the example we saw for binary search let's turn it into a binary tree.
 
 Collection: (1, 2, 3, 4, 8, 9, 10, 14, 18, 20, 30)
 
-.. sourcecode::
+::
 
                  9
          3               18
@@ -78,11 +59,13 @@ We would need to keep this up to fill out the rest of the tree.
 Balance
 ^^^^^^^
 
-As a final point a Binary Search Tree follow the rules of a Binary Tree, and the additional rule that all left child nodes must be smaller than the parent node, and all right child nodes must be greater than or equal to the parent node.
+As a final point a binary search tree follow the rules of a binary tree, and the additional rule that all left child nodes must be smaller than the parent node, and all right child nodes must be greater than or equal to the parent node.
 
-The benefit of a Binary Search Tree is that we can perform value search, value insertion, and value deletion in ``O(log n)`` time.
+The benefit of a binary search tree is that we can perform value search, value insertion, and value deletion in *O(log n)* time.
 
-In the next section of the chapter we will look at adding (insertion), and deleting (deletion) items from the Binary Search Tree.
+In the next section of the chapter we will look at adding (insertion), and deleting (deletion) items from the binary search tree.
 
 Concept Checks
 --------------
+
+.. todo:: add concept checks

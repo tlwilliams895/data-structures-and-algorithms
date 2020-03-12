@@ -1,37 +1,25 @@
-=============
 Binary Search
 =============
-
-.. relevant objectives
-  - Use binary search to efficiently find elements in ordered collections
-  - Understand and write code to conduct a binary search on an ordered
-    collection (eg an array or list)
-  - Explain why a data set must be sorted before conducting a binary search
-
-.. relevant notes from paul
-  - Sort (why it's important) (not how)
-  - Binary Search on an ordered collection
-  - Big O of binary search
 
 Sort Revisited
 --------------
+
 We have seen an insertion sort algorithm. Sorting algorithms are very popular
 algorithms, one of the reasons for their popularity is a sorted collection can
-be searched in O(log n) time. O(log n) time is one of the most performant
-Big-O notations. Show some examples of O(log n) vs O(n).
-How can we achieve O(log n) since it is superior to O(n) especially as the
-dataset get much larger?
+be searched in *O(log n)* time. *O(log n)* time is one of the most performant
+Big-O notations. Show some examples of *O(log n)* vs *O(n)*.
+How can we achieve *O(log n)* since it is superior to *O(n)* especially as the
+data set get much larger?
 
 Binary Search
 -------------
-We can achieve O(log n) with a new concept called Binary Search. We have seen
-simple search (O(n)) where we loop through each value in a collection and when
+
+We can achieve *O(log n)* with a new concept called Binary Search. We have seen
+simple search (with *O(n)* time) where we loop through each value in a collection and when
 we find the match we return it. Binary search is an alternative to simple
-search that takes O(log n) time! 
+search that takes *O(log n)* time! 
 
-So how does it work?
-
-It requires a *sorted* collection: (1, 2, 3, 4, 8, 9, 10, 14, 18, 20, 30).
+So how does it work? It requires a *sorted* collection: (1, 2, 3, 4, 8, 9, 10, 14, 18, 20, 30).
 
 Then it searches the list by taking a split the middle approach. So if our
 search value is 18 a binary search would first take the middle most value
@@ -46,7 +34,7 @@ worst case by choosing one of the numbers on the end as our search value.
 Searching for 1 in a binary search.
 split the middle of collection.length returns 9.
 
-.. sourcecode:: 
+:: 
    
   // Is 9 the number? no
   // is 1 smaller than 9? yes
@@ -63,7 +51,7 @@ split the middle of collection.length returns 9.
 
 So for a collection with a length (n) of 11 the best case performance is 1
 operation, and the worst case performance is 4 operations. That's certainly
-more performant than ``O(n)`` (where the best case would be 1, and the worst case
+more performant than *O(n)* (where the best case would be 1, and the worst case
 would be 11).
 
 A binary search gives us a much more performant way of finding a value in a
@@ -71,15 +59,15 @@ collection! In fact the big o notation for this would be ``O(log n)`` or another
 way of saying that would be to take the length of the collection and perform a
 2 based log on it.
 
-``Log2(11)`` happens to be 3.4594. Which is what we saw with our example above. It
+|log_2 11| happens to be 3.4594. Which is what we saw with our example above. It
 took 4 steps in the worst case scenario!
 
 So now we have a handy equation for calculating how many operations a binary
 search would take on any size collection.
 
-- Collection length of 10 -> log2(10) -> 3.3219
-- Collection length of 100 -> log2(100) -> 6.6428
-- Collection length of 10000000 -> log2(10000000) -> 26.5754
+- Collection length of 10 -> |log_2 10| -> 3.3219
+- Collection length of 100 -> |log_2 100| -> 6.6428
+- Collection length of 10000000 -> |log_2 10000000| -> 26.5754
 
 You can see how increasing the size even drastically doesn't increase the
 number of operations by much. We are really seeing a benefit of cutting out
@@ -92,3 +80,19 @@ Since Binary Search is so powerful a unique data structure has been created
 for it. It's essentially a data structure that is structured around splitting
 segments of data in half. We will explore this new structure further in the
 next section.
+
+.. |log_2 11| raw:: html
+
+   <em>log<sub>2</sub> 11</em>
+
+.. |log_2 10| raw:: html
+
+   <em>log<sub>2</sub> 10</em>
+
+.. |log_2 100| raw:: html
+
+   <em>log<sub>2</sub> 100</em>
+
+.. |log_2 10000000| raw:: html
+
+   <em>log<sub>2</sub> 10000000</em>
