@@ -14,7 +14,7 @@ data set get much larger?
 Binary Search
 -------------
 
-We can achieve *O(log n)* with a new concept called Binary Search. We have seen
+We can achieve *O(log n)* with a new concept called binary search. We have seen
 simple search (with *O(n)* time) where we loop through each value in a collection and when
 we find the match we return it. Binary search is an alternative to simple
 search that takes *O(log n)* time! 
@@ -34,28 +34,26 @@ worst case by choosing one of the numbers on the end as our search value.
 Searching for 1 in a binary search.
 split the middle of collection.length returns 9.
 
-:: 
-   
-  // Is 9 the number? no
-  // is 1 smaller than 9? yes
-  // split the difference between first element and the element before 9
-  // is 3 the number? no
-  // is 1 smaller than 3? yes
-  // split the difference between first element and the element before 3
-  // is 2 the number? no
-  // is 1 smaller than 2? yes
-  // split the difference between first element and the element before 2
-  // there is only one element left
-  // is 1 the number? yes
-  // we found the number in 4 steps!
+#. Is 9 the number? no
+#. Is 1 smaller than 9? yes
+#. Split the difference between first element and the element before 9
+#. Is 3 the number? no
+#. Is 1 smaller than 3? yes
+#. Split the difference between first element and the element before 3
+#. Is 2 the number? no
+#. Is 1 smaller than 2? yes
+#. Split the difference between first element and the element before 2
+#. There is only one element left
+#. Is 1 the number? yes
+#. We found the number in 4 steps!
 
-So for a collection with a length (n) of 11 the best case performance is 1
+So for a collection with a length *n* of 11 the best case performance is 1
 operation, and the worst case performance is 4 operations. That's certainly
 more performant than *O(n)* (where the best case would be 1, and the worst case
 would be 11).
 
 A binary search gives us a much more performant way of finding a value in a
-collection! In fact the big o notation for this would be ``O(log n)`` or another
+collection! In fact the big o notation for this would be *O(log n)* or another
 way of saying that would be to take the length of the collection and perform a
 2 based log on it.
 
@@ -76,10 +74,15 @@ binary search's worst case performance will always be better than a simple
 search's worst case performance when the collection size is the same, and
 greater than about 10.
 
-Since Binary Search is so powerful a unique data structure has been created
+Since binary search is so powerful a unique data structure has been created
 for it. It's essentially a data structure that is structured around splitting
 segments of data in half. We will explore this new structure further in the
 next section.
+
+Check Your Understanding
+------------------------
+
+.. todo:: add 1-2 review questions
 
 .. |log_2 11| raw:: html
 

@@ -10,18 +10,20 @@ Today we will be introducing a new data structure that will allow us to easily u
 Binary Tree
 -----------
 
-Before we can learn about a Binary Search Tree which is the unique data
+Before we can learn about a binary search tree which is the unique data
 structure that works with Binary Search, we have to learn about the data
-structure a Binary Search Tree is based on the binary tree.
+structure a binary search tree is based on the binary tree.
 A binary tree is a tree like data structure in which any node can have up to
 two branches to additional nodes. When visualized the data structure looks
 like a tree.
 
 ::
 
-        a
-    b       c
-  d   e   f   g
+       __a__
+      /     \
+     b       c
+    / \     / \
+   d   e   f   g
 
 A has two branches down to b and c. B has two branches down to D and E. C has
 two branches to F and G. If we were to add more elements to this data
@@ -34,11 +36,15 @@ definition of one node, not having any more than 2 child nodes.
 
 ::
 
-             a
-         b       c
-      d     e f     g
-           h       i  j
-          k
+       _______a__
+      /          \
+     b_____       c__
+    /      \     /   \
+   d        e   f     g
+           /         / \
+          h         i   j
+        /
+       k
 
 That is an example of a valid binary tree. None of the nodes have more than
 two children, and not every node has the same number of children. Some nodes
@@ -64,17 +70,19 @@ Root Node
 
 In a binary tree the root node is the first element of our data structure.
 
-In the example list ``[5, 19, 2, 4]`` our first element is ``5``.
+In the example list [5, 19, 2, 4] our first element is 5.
 
 In the example binary tree
 
 ::
 
-         5
-      19   2
-    4
+       5
+      / \
+    19   2
+   /
+  4
 
-``5`` is our root node. The element at the top of our tree is always considered the root node of the binary tree.
+5 is our root node. The element at the top of our tree is always considered the root node of the binary tree.
 
 So what are the remaining nodes called?
 
@@ -87,43 +95,48 @@ So in the example above of
 
 ::
 
-         5
-      19   2
-    4
+       5
+      / \
+    19   2
+   /
+  4
 
-5 is our root node, and it has two children: ``19`` and ``2``.
+5 is our root node, and it has two children: 19 and 2.
 
-Even though both ``19`` and ``2`` are considered child nodes of ``5``, we may want to distinguish between the children so we have further classifications: ``left child`` and ``right child``.
+Even though both 19 and 2 are considered child nodes of 5, we may want to distinguish between the children so we have further classifications: **left child** and **right child**.
 
-In the example above ``19`` would be the ``left child`` of ``5``, and ``2`` would be the ``right child`` of ``5``.
+In the example above 19 would be the left child of 5, and 2 would be the right child of 5.
 
-Taking the list we had before we have ``[5, 19, 2, 4]``.
-- ``5`` becomes the root node
-- ``19`` becomes the left child of ``5``
-- ``2`` becomes the right child of ``5``
+Taking the list we had before we have [5, 19, 2, 4].
+- 5 becomes the root node
+- 19 becomes the left child of 5
+- 2 becomes the right child of 5
 
-This leaves us with one final number in our list: ``4``. We have met the total number of children that ``5`` can have with two (both ``19`` and ``2``) so ``4`` cannot be a child of ``5``. So in this case we move down a level to the left child of our now full node.
+This leaves us with one final number in our list: 4. We have met the total number of children that 5 can have with two (both 19 and 2) so 4 cannot be a child of 5. So in this case we move down a level to the left child of our now full node.
 
-So in this case ``4`` will become the left child of the node ``19``.
+So in this case 4 will become the left child of the node 19.
 
 Depth
 ^^^^^
 
-The final term you should learn for binary tree is ``depth``. ``Depth`` refers to the number of levels in a given binary tree.
+The final term you should learn for binary tree is depth. **Depth** refers to the number of levels in a given binary tree.
 
 ::
 
-         5
-      19   2
-    4
+       5
+      / \
+    19   2
+   /
+  4
 
-With the example we have used throughout this section we can see 3 clear levels to our tree. ``5`` is the first level, ``19`` and ``2`` are at the second level and ``4`` is at the third level. The depth of this tree is 3.
+
+With the example we have used throughout this section we can see three clear levels to our tree. 5 is the first level, 19 and 2 are at the second level and 4 is at the third level. The depth of this tree is 3.
 
 .. note::
 
    What you have seen is the basic algorithm for turning a list into a binary tree. In future sections you will see slightly more complex algorithms for creating a balanced binary tree from a list.
 
-Convert List to binary tree
+Convert List to Binary Tree
 ---------------------------
 
 As a final example let's turn the list we saw from the last section into a binary tree.
@@ -131,10 +144,14 @@ Collection: (1, 2, 3, 4, 8, 9, 10, 14, 18, 20, 30)
 
 ::
 
-                  1
-          2                3
-      4       8         9      10
-   14   18  20  30
+
+             ________1__
+            /           \
+        ___2___          3
+       /       \        / \
+      4         8      9   10
+     / \       / \
+    14  18    20  30
 
 With this list we simply choose our first element to be our root node. Then sequentially moving through the list we fill out the left child of the root, and then the right child of the root. Then we move onto the left child of the root filling out its left and right child before moving to the right child of the root. We continue this pattern until we have transferred all of the elements from the list to the binary tree.
 
@@ -145,31 +162,36 @@ With this list we simply choose our first element to be our root node. Then sequ
 The Importance of Order
 -----------------------
 
-What we have seen so far is the basic terminology for binary tree and a simple algorithm that takes a list and converts it into a binary tree. However, the power of binary trees in computer science is performing performant (``O(log n)``) search, insertion, and deletion. With an unordered binary tree you cannot achieve ``O(log n)``.
+What we have seen so far is the basic terminology for binary tree and a simple algorithm that takes a list and converts it into a binary tree. However, the power of binary trees in computer science is performing performant (*O(log n)*) search, insertion, and deletion. With an unordered binary tree you cannot achieve *O(log n)*.
 
 Let's take an example of finding a specific value in the binary tree we created above.
 
 ::
 
-         5
-      19   2
-    4
+       5
+      / \
+    19   2
+   /
+  4
 
-What if we are looking for the value ``2``. We would first check the root node ``5``. Does ``5`` equal ``2``? No, we need to move on. Let's check the left node of the root node. ``19``. Does ``19`` equal ``2``. It does not. Let's check the left node of the ``19`` which is ``4``. Does ``4`` equal ``2`` no. Since we don't have any left nodes let's move back up a level. ``19`` does not have any right nodes so let's move up a level. ``5`` has a right node that is ``2``. Does ``2`` equal ``2`` yes! We found our value in 4 checks which happens to be the length of our data structure. The worst case was *O(n)* which isn't awful, but not as good as a binary search ``O(log n)``.
+What if we are looking for the value 2. We would first check the root node 5. Does 5 equal 2? No, we need to move on. Let's check the left node of the root node. 19. Does 19 equal 2. It does not. Let's check the left node of the 19 which is 4. Does 4 equal 2 no. Since we don't have any left nodes let's move back up a level. 19 does not have any right nodes so let's move up a level. 5 has a right node that is 2. Does 2 equal 2 yes! We found our value in 4 checks which happens to be the length of our data structure. The worst case was *O(n)* which isn't awful, but not as good as a binary search *O(log n)*.
 
 However, what if this binary tree was ordered so that the left child was always smaller than the parent node, and the right child is always greater than or larger than the parent? What if we tried to put our binary tree is a specific order?
 
 ::
 
-         5
-      4     19
-    2
+       5
+      / \
+    19   2
+   /
+  4
+
 
 Now if we try to search through our binary tree, since it is ordered and follows the rule that every left child is smaller, and every right child is larger or equal to the parent node, we can easily do a binary search.
 
-If we are looking for the value ``2``. We would first check the root node ``5``. Does ``5`` equal ``2``. No, but now we can make an informed decision. If ``2`` is smaller than ``5`` we know to check the left child. If ``2`` is greater than or equal to ``5`` we know to check the right child. What is the left child of ``5``, ``4``. Does ``2`` equal ``4``. No. Is ``2`` smaller than, or greater than or equal to ``4``. It is smaller so we need to check the left child again. Does ``2`` equal ``2``? Yes! We found the matching value in one less iteration than the previous check.
+If we are looking for the value 2. We would first check the root node 5. Does 5 equal 2. No, but now we can make an informed decision. If 2 is smaller than 5 we know to check the left child. If 2 is greater than or equal to 5 we know to check the right child. What is the left child of 5, 4. Does 2 equal 4. No. Is 2 smaller than, or greater than or equal to 4. It is smaller so we need to check the left child again. Does 2 equal 2? Yes! We found the matching value in one less iteration than the previous check.
 
-A binary tree that is the order mentioned above makes it very easy to both visualize and perform Binary Searches!
+A binary tree that is the order mentioned above makes it very easy to both visualize and perform binary searches!
 
 Concept Checks
 --------------
